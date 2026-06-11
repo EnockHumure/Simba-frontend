@@ -1,0 +1,1609 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "categories": "Categories",
+    "blog": "Blog",
+    "contact": "Contact",
+    "cart": "Cart",
+    "wishlist": "Wishlist",
+    "account": "Account",
+    "orders": "My Orders",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "admin": "Admin Panel",
+    "search": "Search products...",
+    "searchPlaceholder": "Search for products, brands...",
+    "branches": "Branches",
+    "allProducts": "All Products",
+    "notifications": "Notifications",
+    "viewMore": "View more",
+    "markAllRead": "Mark all read",
+    "clearNotifications": "Clear notifications",
+    "noNotifications": "No notifications yet",
+    "recentNotifications": "Recent notifications",
+    "unread": "unread",
+    "accountCenter": "Account Center"
+  },
+  "home": {
+    "hero": {
+      "badge": "Kigali's Favourite Supermarket",
+      "title": "Fresh Groceries Delivered to Your Door",
+      "subtitle": "Shop thousands of products - food, beverages, household essentials and more, delivered fast across Kigali.",
+      "shopNow": "Shop Now",
+      "viewDemo": "View Demo"
+    },
+    "featured": "Featured Products",
+    "featuredDesc": "Hand-picked favourites just for you",
+    "topProducts": "Top Sellers",
+    "topProductsDesc": "Our most popular products this month",
+    "recommended": "Recommended for You",
+    "recommendedDesc": "Based on your shopping history",
+    "categories": "Shop by Category",
+    "categoriesDesc": "Find exactly what you need",
+    "viewAll": "View All",
+    "newArrivals": "New Arrivals",
+    "deals": "Today's Deals"
+  },
+  "shop": {
+    "resultsFor": "Results for \"{query}\"",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "priceRange": "Price Range",
+    "minPrice": "Min (RWF)",
+    "maxPrice": "Max (RWF)",
+    "quickFilters": "Quick Filters",
+    "ratings": "Ratings",
+    "anyRating": "Any rating",
+    "ratingPlus": "{rating}+ stars",
+    "featured": "Featured",
+    "inStock": "In Stock",
+    "filters": "Filters",
+    "apply": "Apply",
+    "clearFilters": "Clear filters",
+    "clearAll": "Clear all filters",
+    "tryDifferent": "Try different search terms or filters"
+  },
+  "blog": {
+    "title": "Our Blog",
+    "subtitle": "News, recipes, and tips from Simba Super Market",
+    "readMore": "Read More",
+    "views": "{count} views",
+    "likes": "{count} likes",
+    "comments": "{count} comments",
+    "comment": "Leave a Comment",
+    "commentPlaceholder": "Share your thoughts...",
+    "submitComment": "Post Comment",
+    "loginToComment": "Sign in to comment",
+    "noBlogs": "No blog posts yet",
+    "tags": "Tags",
+    "share": "Share this post",
+    "relatedPosts": "Related Posts"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help. Send us a message and we'll get back to you within 24 hours.",
+    "sendOtherMessage": "Send another Message",
+    "messageSent": "Message Sent!",
+    "touch": "Get in Touch",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number (Optional)",
+    "subject": "Subject",
+    "message": "Message",
+    "messagePlaceholder": "Tell us how we can help...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent! We'll get back to you soon.",
+    "address": "Address",
+    "addressValue": "Kigali, Rwanda",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "hours": "Business Hours",
+    "hoursValue": "Mon–Sat: 8am–8pm",
+    "hoursValueSun": "Sun: 9am–5pm"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "viewAside": "View on Aside",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Start shopping and add items to your cart",
+    "shopNow": "Start Shopping",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery Fee",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "remove": "Remove",
+    "update": "Update",
+    "items": "items",
+    "freeDelivery": "Free delivery on orders over RWF {amount}",
+    "deliveryNote": "Delivery within Kigali only",
+    "continueShopping": "Continue Shopping",
+    "guestCartNotice": "You're browsing as a guest. Sign in to save your cart.",
+    "signIn": "Sign in",
+    "signInToCheckout": "Sign in to Checkout"
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "empty": "Your wishlist is empty",
+    "emptyDesc": "Save items you love and find them here",
+    "browseProducts": "Browse Products",
+    "addToCart": "Add to Cart",
+    "remove": "Remove",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "items": "saved items"
+  },
+  "orders": {
+    "title": "My Orders",
+    "order": "Order",
+    "payment": {
+      "pending": "Payment Pending",
+      "paid": "Paid",
+      "failed": "Payment Failed",
+      "refunded": "Refunded"
+    },
+    "date": "Order Date",
+    "total": "Total",
+    "items": "Items",
+    "track": "Track Order",
+    "noOrders": "No orders yet",
+    "noOrdersDesc": "Place your first order to see it here",
+    "signInPrompt": "Please sign in to view your orders",
+    "signIn": "Sign In",
+    "startShopping": "Start Shopping",
+    "orderNumber": "Order #",
+    "timeline": "Order Timeline",
+    "deliveryAddress": "Delivery Address",
+    "notFound": "Order not found",
+    "pickupInfo": "Pickup Information",
+    "pickupTime": "Pickup Time",
+    "branch": "Branch",
+    "address": "Address",
+    "location": "Location",
+    "coordinates": "Coordinates",
+    "openMap": "Open map",
+    "phone": "Phone",
+    "notes": "Notes",
+    "each": "each",
+    "subtotal": "Subtotal",
+    "deposit": "Deposit",
+    "cancelledMessage": "This order has been cancelled.",
+    "status": {
+      "pending": "Order Placed",
+      "accepted": "Order Accepted",
+      "preparing": "Being Prepared",
+      "ready": "Ready for Pickup",
+      "picked_up": "Picked Up",
+      "cancelled": "Cancelled"
+    }
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "addedToCart": "Added to cart!",
+    "buyNow": "Buy Now",
+    "outOfStock": "Out of Stock",
+    "lowStock": "Only left",
+    "inStock": "In Stock",
+    "reviews": "Reviews",
+    "rating": "Rating",
+    "noReviews": "No reviews yet. Be the first!",
+    "writeReview": "Write a Review",
+    "submitReview": "Submit Review",
+    "similar": "You Might Also Like",
+    "description": "Description",
+    "details": "Details",
+    "sku": "SKU",
+    "category": "Category",
+    "tags": "Tags",
+    "share": "Share",
+    "wishlist": "Save to Wishlist",
+    "removeWishlist": "Remove from Wishlist",
+    "perUnit": "per {unit}",
+    "weight": "Weight",
+    "alcohol": "This product contains alcohol",
+    "reviewSuccess": "Review submitted successfully!",
+    "reviewError": "You can only review products you have purchased and received.",
+    "quantity": "Quantity",
+    "images": "Product Images"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "delivery": "Delivery Information",
+    "payment": "Payment Method",
+    "review": "Review Order",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "street": "Street Address",
+    "district": "District",
+    "sector": "Sector",
+    "deliveryMap": "Location on Map",
+    "deliveryMapHint": "Use your current location and adjust the coordinates if needed.",
+    "deliveryAddressHint": "You can use coordinates alone, or add street and district for easier delivery.",
+    "notes": "Delivery Notes",
+    "pickupNotes": "Pickup Notes",
+    "deliveryNotes": "Delivery Notes",
+    "dpo": "Pay with Card / Mobile Money",
+    "cod": "Cash on Delivery",
+    "cashOnArrival": "Cash on Arrival",
+    "cashOnArrivalDesc": "Pay when you collect",
+    "cashOnDelivery": "Cash on Delivery",
+    "cashOnDeliveryDesc": "Pay when your order is delivered",
+    "placeOrder": "Place Order",
+    "processing": "Processing...",
+    "success": "Order Placed!",
+    "successDesc": "Your order #{number} has been placed successfully.",
+    "trackOrder": "Track Your Order",
+    "payNow": "Pay Now",
+    "selectBranch": "Select Pickup Branch",
+    "loadingBranches": "Loading branches...",
+    "contact": "Contact Details",
+    "pickupOrder": "Pickup",
+    "pickupOrderDesc": "Come to the branch and collect your order",
+    "deliveryOrder": "Delivery",
+    "deliveryOrderDesc": "We deliver your order to your address",
+    "deliveryAddress": "Delivery Address",
+    "pickupDateTime": "Pickup date and time",
+    "pickupDate": "Pickup date",
+    "pickupTime": "Pickup Time",
+    "selectPickupTime": "Select a pickup time...",
+    "pickupNote": "Your order will be ready at the selected time. Please arrive within 30 minutes of your slot.",
+    "pickupBranch": "Pickup branch",
+    "dpoDesc": "Visa, Mastercard, MTN, Airtel",
+    "codDesc": "Pay when you receive",
+    "subtotal": "Subtotal",
+    "deliveryFee": "Delivery",
+    "totalAmount": "Total",
+    "continueShopping": "Continue Shopping",
+    "emptyCart": "Your cart is empty. Add some items first.",
+    "browseProducts": "Browse Products",
+    "signInPrompt": "Please sign in to checkout",
+    "signIn": "Sign In",
+    "termsPrefix": "By placing your order you agree to our",
+    "terms": "Terms",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "branchSwitchTitle": "Switch branch?",
+    "branchSwitchDescription": "{branch} does not have some cart items.",
+    "branchSwitchRequestedAvailable": "Requested {requested}, available {available}",
+    "branchSwitchRemove": "Remove",
+    "branchSwitchConfirm": "Switch and remove items",
+    "branchSwitchCancel": "Cancel",
+    "branchSwitched": "Switched to {branch}.",
+    "branchSwitchedRemoved": "Switched to {branch}. Unavailable items were removed.",
+    "placeholders": {
+      "fullName": "Enter your name",
+      "phone": "Enter your phone number",
+      "street": "Enter your address e.g. KK 123 St, Kicukiro",
+      "district": "Enter your district e.g. Kicukiro",
+      "sector": "Enter your sector e.g. Niboye",
+      "notes": "Any special instructions..."
+    },
+    "errors": {
+      "fullNameMin": "Full name must be at least 2 characters",
+      "phoneMin": "Enter a valid phone number (min 10 digits)",
+      "streetMin": "Please enter your street address",
+      "districtMin": "Please enter your district",
+      "locationOrAddressRequired": "Add delivery coordinates, or enter both street and district",
+      "branchRequired": "Please select a pickup branch",
+      "pickupRequired": "Please select a pickup time",
+      "fillRequired": "Please fill in all required fields",
+      "branchLoadFailed": "Failed to load branches",
+      "cartEmpty": "Your cart is empty",
+      "orderFailed": "Order failed. Please try again.",
+      "fixErrors": "Please fix the following errors:",
+      "field": "Field"
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "Rwanda's favourite \n supermarket, \n online.",
+      "description": "Browse thousands of products and pick up your order at any of our 9 Kigali branches.",
+      "features": {
+        "feature1": "Fast pickup at 9 Kigali branches",
+        "feature2": "Secure and private shopping",
+        "feature3": "Trusted by thousands in Kigali"
+      }
+    },
+    "signup": {
+      "title": "Join Simba today",
+      "subtitle": "Your groceries, \n your way.",
+      "description": "Create a free account and start ordering from Kigali's most trusted supermarket chain.",
+      "features": {
+        "feature1": "Track your pick-up orders in real time",
+        "feature2": "Save favourites to your wishlist",
+        "feature3": "Exclusive member deals & offers",
+        "feature4": "Quick re-order from history"
+      },
+      "customer": "Customers in Kigali"
+    },
+    "show": "Show",
+    "signIn": "Sign In",
+    "signUp": "Create Account",
+    "signOut": "Sign Out",
+    "email": "Email Address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signInHere": "Sign in here",
+    "signUpHere": "Create one",
+    "orContinueWith": "Or continue with",
+    "agreeTerms": "By signing up you agree to our Terms of Service",
+    "verifyEmail": "Verify your email",
+    "resetSent": "Password reset link sent to your email",
+    "passwordMismatch": "Passwords do not match",
+    "loading": "Please wait...",
+    "continueWithGoogle": "Continue with Google",
+    "backToSignIn": "Back to sign in",
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password",
+      "newPassword": "Enter your new password",
+      "confirmPassword": "Confirm your password"
+    },
+    "errors": {
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 6 characters",
+      "invalidCredentials": "Invalid email or password",
+      "signInFailed": "Sign in failed. Please try again.",
+      "googleUnavailable": "Google sign in is currently unavailable.",
+      "sendResetFailed": "Failed to send reset email. Please try again.",
+      "resetTokenInvalid": "Invalid or missing reset token",
+      "resetTokenMissing": "The reset link is missing its token. Please request a new reset email.",
+      "resetPasswordFailed": "Failed to reset password",
+      "passwordMismatch": "Passwords do not match",
+      "confirmPasswordRequired": "Please confirm your password"
+    },
+    "forgotPage": {
+      "description": "Enter your email and we'll send you a link to reset your password.",
+      "sentTitle": "Check your inbox",
+      "sentDescription": "We sent a reset link to",
+      "spamHint": "Didn't receive it? Check your spam folder, or",
+      "tryAgain": "try again",
+      "sendLink": "Send Reset Link",
+      "sending": "Sending..."
+    },
+    "resetPage": {
+      "title": "Reset Password",
+      "description": "Enter your new password below to finish resetting your account.",
+      "secureHint": "Use the secure link from your email to continue.",
+      "doneTitle": "Password updated",
+      "doneDescription": "You can now sign in with your new password.",
+      "passwordHint": "Make sure your password is strong and easy for you to remember.",
+      "submit": "Reset Password",
+      "successToast": "Password updated successfully"
+    },
+    "payment": {
+      "success": {
+        "title": "Payment Successful!",
+        "description": "Your payment has been processed successfully.",
+        "order": "Order",
+        "viewOrders": "View My Orders",
+        "continueShopping": "Continue Shopping"
+      },
+      "cancel": {
+        "title": "Payment Cancelled",
+        "description": "Your payment was cancelled. Your order is still saved - you can try again.",
+        "myOrders": "My Orders",
+        "backToCart": "Back to Cart"
+      }
+    }
+  },
+  "admin": {
+    "layout": {
+      "appName": "Simba Market",
+      "panel": "Admin Panel",
+      "branchPanel": "Branch Panel",
+      "branchManagerPanel": "Branch Dashboard",
+      "branchStaffPanel": "My Branch"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "orders": "Orders",
+      "branches": "Branches",
+      "users": "Users",
+      "blogs": "Blogs",
+      "messages": "Messages",
+      "banners": "Banners",
+      "settings": "Settings",
+      "account": "Account",
+      "myOrders": "My Orders",
+      "notifications": "Notifications",
+      "signOut": "Sign Out"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Welcome back! Here's what's happening.",
+      "viewOrders": "View Orders",
+      "totalRevenue": "Total Revenue",
+      "monthRevenue": "This Month's Revenue",
+      "totalOrders": "Total Orders",
+      "pendingOrders": "Pending Orders",
+      "totalProducts": "Total Products",
+      "totalUsers": "Total Users",
+      "todayCount": "{count} today",
+      "needsAttention": "Needs attention",
+      "activeListings": "Active listings",
+      "registered": "Registered",
+      "revenue": "Revenue",
+      "revenueTitle": "Revenue - {period}",
+      "revenueCustomTitle": "Revenue - {from} to {to}",
+      "revenueCustomRange": "Revenue - Custom range",
+      "pickBothDates": "Pick both start and end dates",
+      "startBeforeEnd": "Start date must be before end date",
+      "topProducts": "Top Products",
+      "recentOrders": "Recent Orders",
+      "viewAll": "View all",
+      "sold": "{count} sold",
+      "selectPeriod": "Select period",
+      "pickDates": "Pick dates",
+      "from": "From",
+      "to": "To",
+      "cancel": "Cancel",
+      "apply": "Apply",
+      "growth12": "+12%",
+      "growth8": "+8%",
+      "periods": {
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "week": "Last 7 Days",
+        "month": "Last 30 Days",
+        "year": "Last 1 Year",
+        "lifetime": "Lifetime",
+        "custom": "Custom range"
+      }
+    },
+    "users": {
+      "title": "Users",
+      "searchPlaceholder": "Search users...",
+      "allRoles": "All Roles",
+      "cols": {
+        "user": "User",
+        "email": "Email",
+        "phone": "Phone",
+        "role": "Role",
+        "orders": "Orders",
+        "joined": "Joined",
+        "actions": "Actions"
+      },
+      "changeRole": "Change Role",
+      "saving": "Saving...",
+      "updateRole": "Update Role",
+      "cancel": "Cancel",
+      "roles": {
+        "super_admin": "Full access",
+        "admin": "Manage store",
+        "poster": "Post products/blogs",
+        "branch_manager": "Branch control",
+        "branch_staff": "Branch operations",
+        "user": "Shop only"
+      }
+    },
+    "banners": {
+      "title": "Banners",
+      "add": "Add Banner",
+      "empty": "No banners yet. Add your first banner.",
+      "active": "Active",
+      "inactive": "Inactive",
+      "sortOrder": "Sort order",
+      "edit": "Edit",
+      "delete": "Delete",
+      "editBanner": "Edit Banner",
+      "addBanner": "Add Banner",
+      "created": "Banner created!",
+      "updated": "Banner updated!",
+      "deleted": "Banner deleted",
+      "saving": "Saving...",
+      "update": "Update",
+      "create": "Create",
+      "cancel": "Cancel",
+      "fields": {
+        "title": "Title *",
+        "subtitle": "Subtitle",
+        "imageUrl": "Image URL *",
+        "linkUrl": "Link URL",
+        "active": "Active"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "storeConfiguration": "Store Configuration",
+      "saved": "Settings saved!",
+      "failed": "Failed to save settings",
+      "saving": "Saving...",
+      "save": "Save Settings",
+      "fields": {
+        "storeName": "Store Name",
+        "storeEmail": "Store Email",
+        "storePhone": "Store Phone",
+        "storeAddress": "Store Address",
+        "deliveryFee": "Delivery Fee (RWF)",
+        "freeDeliveryThreshold": "Free Delivery Threshold (RWF)",
+        "currencyCode": "Currency Code"
+      }
+    },
+    "profile": {
+      "title": "My Account",
+      "myOrders": "My Orders",
+      "trackOrders": "Track your orders",
+      "details": "Profile Details",
+      "fullName": "Full Name",
+    "email": "Email",
+    "emailLocked": "Email cannot be changed",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "Your phone number",
+    "deliveryStreet": "Delivery Street",
+    "deliveryStreetPlaceholder": "Street or landmark",
+    "deliveryDistrict": "District",
+    "deliveryDistrictPlaceholder": "Your district",
+    "deliverySector": "Sector / Area",
+    "deliverySectorPlaceholder": "Your sector or area",
+    "deliveryHint": "These details will be reused during checkout.",
+    "deliveryMap": "Your Location on Map",
+    "deliveryMapHint": "Use your current location or enter coordinates manually.",
+    "deliveryMapEmpty": "No map location selected yet.",
+    "useCurrentLocation": "Use current location",
+    "role": "Role",
+      "saving": "Saving...",
+      "save": "Save Changes",
+      "signInPrompt": "Please sign in to view your profile",
+      "signIn": "Sign In"
+    },
+    "contacts": {
+      "title": "Messages",
+      "new": "new",
+      "filters": {
+        "all": "All",
+        "unread": "Unread",
+        "read": "Read"
+      },
+      "cols": {
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "view": "View",
+      "replyViaEmail": "Reply via Email",
+      "close": "Close",
+      "replied": "Replied",
+      "replyTo": "Reply to",
+      "originalMessage": "Original message",
+      "replyTitle": "Write reply",
+      "replySubtitle": "Use the editor below to send a rich-text reply.",
+      "replyPlaceholder": "Write your reply here...",
+      "sendReply": "Send reply",
+      "sendingReply": "Sending...",
+      "replySent": "Reply sent successfully",
+      "replyFailed": "Failed to send reply",
+      "replyRequired": "Write a reply before sending",
+      "loadingEditor": "Loading reply editor..."
+    },
+    "blogs": {
+      "title": "Blog Posts",
+      "newPost": "New Post",
+      "cols": {
+        "title": "Title",
+        "author": "Author",
+        "tags": "Tags",
+        "views": "Views",
+        "status": "Status",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "published": "Published",
+      "draft": "Draft",
+      "editPost": "Edit Blog Post",
+      "placeholder": "Write your blog post here...",
+      "created": "Blog post created!",
+      "updated": "Blog post updated!",
+      "deleted": "Blog post deleted",
+      "saving": "Saving...",
+      "updatePost": "Update Post",
+      "createPost": "Create Post",
+      "cancel": "Cancel",
+      "loadingEditor": "Loading editor...",
+      "fields": {
+        "title": "Title *",
+        "excerpt": "Excerpt",
+        "imageUrl": "Cover Image URL",
+        "tags": "Tags (comma separated)",
+        "content": "Content *",
+        "publishImmediately": "Publish immediately (visible to public)"
+      }
+    },
+    "products": {
+      "title": "Products",
+      "add": "Add Product",
+      "searchPlaceholder": "Search products...",
+      "cols": {
+        "product": "Product",
+        "price": "Price",
+        "stock": "Stock",
+        "category": "Category",
+        "status": "Status",
+        "sales": "Sales",
+        "actions": "Actions"
+      },
+      "featured": "Featured",
+      "active": "Active",
+      "inactive": "Inactive",
+      "editProduct": "Edit Product",
+      "addNewProduct": "Add New Product",
+      "created": "Product created!",
+      "updated": "Product updated!",
+      "deleted": "Product deleted",
+      "saving": "Saving...",
+      "updateProduct": "Update Product",
+      "createProduct": "Create Product",
+      "deleteTitle": "Delete Product?",
+      "deleteDesc": "This will deactivate the product. It won't appear in the store anymore.",
+      "deleting": "Deleting...",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "fields": {
+        "productName": "Product Name",
+        "price": "Price (RWF)",
+        "comparePrice": "Compare Price (RWF)",
+        "stock": "Stock",
+        "category": "Category",
+        "unit": "Unit",
+        "tags": "Tags (comma separated)",
+        "shortDescription": "Short Description",
+        "description": "Description",
+        "images": "Image URLs (one per line)",
+        "featuredProduct": "Featured Product",
+        "containsAlcohol": "Contains Alcohol (18+)",
+        "activeVisible": "Active (visible in store)"
+      },
+      "placeholders": {
+        "productName": "e.g. Premium Basmati Rice 5kg",
+        "price": "Enter price e.g. 8500",
+        "comparePrice": "Enter compare price e.g. 10000",
+        "stock": "Enter current stock e.g. 100",
+        "category": "Select category",
+        "unit": "enter units e.g. 500ml, 5kg, pack",
+        "tags": "Enter tags e.g. fresh, organic, local",
+        "shortDescription": "enter one line summary",
+        "description": "Enter full product description...",
+        "images": "https://example.com/image.jpg"
+      }
+    },
+    "branches": {
+      "title": "Branches",
+      "subtitle": "Manage all Simba Supermarket locations in Kigali",
+      "add": "Add Branch",
+      "stats": {
+        "totalBranches": "Total Branches",
+        "active": "Active",
+        "districts": "Districts"
+      },
+      "created": "Branch created!",
+      "updated": "Branch updated!",
+      "deactivated": "Branch deactivated",
+      "inactive": "Inactive",
+      "new": "New",
+      "orders": "orders",
+      "staff": "staff",
+      "more": "more",
+      "viewOnMaps": "View on Maps",
+      "edit": "Edit",
+      "deactivate": "Deactivate",
+      "deleted": "Deleted",
+      "editBranch": "Edit Branch",
+      "addNewBranch": "Add New Branch",
+      "quickFill": "Quick fill from known branches:",
+      "fields": {
+        "name": "Branch Name",
+        "address": "Address",
+        "district": "District",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "phone": "Phone",
+        "openTime": "Opens At",
+        "closeTime": "Closes At",
+        "sortOrder": "Sort Order"
+      },
+      "placeholders": {
+        "name": "Enter branch name",
+        "address": "Enter branch location",
+        "district": "Select district",
+        "latitude": "e.g. -1.9441",
+        "longitude": "e.g. 30.1178",
+        "phone": "+250 788 000 000"
+      },
+      "sortOrderHint": "Lower = appears first",
+      "saving": "Saving...",
+      "updateBranch": "Update Branch",
+      "createBranch": "Create Branch",
+      "cancel": "Cancel",
+      "deactivateTitle": "Deactivate Branch?",
+      "deactivateDesc": "This will hide the branch from the public store. Existing orders won't be affected.",
+      "processing": "Processing..."
+    },
+    "branchDetail": {
+      "backToBranches": "Back to branches",
+      "staff": "staff",
+      "products": "products",
+      "inactive": "Inactive",
+      "team": "Team",
+      "searchPlaceholder": "Search products...",
+      "cols": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "save": "Save",
+      "cancel": "Cancel",
+      "active": "Active",
+      "hidden": "Hidden",
+      "update": "Update",
+      "hide": "Hide",
+      "show": "Show",
+      "stockUpdated": "Stock updated"
+    },
+    "branchTeam": {
+      "backToBranch": "Back to branch",
+      "teamTitle": "Team",
+      "inviteDescription": "Invite people with an account to join this branch.",
+      "inviteTeamMember": "Invite team member",
+      "searchPlaceholder": "Search users by name or email",
+      "role": "Role",
+      "branchStaff": "Branch staff",
+      "branchManager": "Branch manager",
+      "optionalNote": "Optional note",
+      "shortMessage": "Short message",
+      "sent": "Invite sent",
+      "sendInvite": "Send invite",
+      "sending": "Sending...",
+      "pendingInvites": "Pending invites",
+      "noPendingInvites": "No pending invites.",
+      "failed": "Failed to send invite"
+    },
+    "branchInvite": {
+      "title": "Branch invite",
+      "signInPrompt": "Sign in to view and respond to this invitation.",
+      "signIn": "Sign in",
+      "invalidToken": "Invalid or missing invite token.",
+      "goBack": "Go back",
+      "description": "You have a branch team invitation. Accept it to join the branch team, or decline it if it is not for you.",
+      "accept": "Accept invite",
+      "accepting": "Accepting...",
+      "decline": "Decline",
+      "declining": "Declining...",
+      "updated": "Invite updated",
+      "failed": "Failed to update invite"
+    },
+    "orders": {
+      "title": "Orders",
+      "searchPlaceholder": "Search orders...",
+      "allStatuses": "All Statuses",
+      "cols": {
+        "order": "Order",
+        "customer": "Customer",
+        "branch": "Branch",
+        "items": "Items",
+        "total": "Total",
+        "status": "Status",
+        "payment": "Payment",
+        "date": "Date",
+        "actions": "Actions"
+      },
+      "itemsCount": "items",
+      "manage": "Manage",
+      "statusUpdated": "Order status updated",
+      "statusError": "Failed to update status",
+      "modal": {
+        "title": "Update Order Status",
+        "customer": "Customer",
+        "email": "Email",
+        "phone": "Phone",
+        "total": "Total",
+        "branch": "Branch",
+        "address": "Address",
+        "location": "Location",
+        "openMap": "Open map",
+        "currentStatus": "Current status",
+        "newStatus": "New status",
+        "note": "Note",
+        "notePlaceholder": "Add a note...",
+        "updating": "Updating...",
+        "update": "Update Status",
+        "cancel": "Cancel"
+      },
+      "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "preparing": "Preparing",
+        "ready": "Ready",
+        "picked_up": "Picked Up",
+        "cancelled": "Cancelled"
+      }
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "noResults": "No results found",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "price": "Price",
+    "name": "Name",
+    "date": "Date",
+    "asc": "Low to High",
+    "desc": "High to Low",
+    "newest": "Newest First",
+    "oldest": "Oldest First",
+    "popular": "Most Popular",
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive",
+    "yes": "Yes",
+    "no": "No",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "close": "Close",
+    "back": "Back",
+    "clear": "Clear",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page {page} of {total}",
+    "showing": "Showing {from}-{to} of {total}",
+    "currency": "RWF",
+    "free": "Free",
+    "freeDelivery": "Free delivery on orders over RWF 50,000",
+    "required": "Required",
+    "optional": "Optional",
+    "profile": "Profile",
+    "or": "or",
+    "and": "and",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "language": "Language",
+    "allProducts": "All Products",
+    "sortOptions": {
+      "newestFirst": "Newest First",
+      "mostPopular": "Most Popular",
+      "priceLowToHigh": "Price: Low to High",
+      "priceHighToLow": "Price: High to Low",
+      "highestRated": "Highest Rated"
+    }
+  },
+  "footer": {
+    "tagline": "Kigali's favourite supermarket - fresh, fast, and reliable.",
+    "shop": "Shop",
+    "allProducts": "All Products",
+    "categories": "Categories",
+    "deals": "Today's Deals",
+    "newArrivals": "New Arrivals",
+    "company": "Company",
+    "about": "About Us",
+    "blog": "Blog",
+    "contact": "Contact Us",
+    "careers": "Careers",
+    "support": "Support",
+    "faq": "FAQ",
+    "returns": "Returns Policy",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "delivery": "Delivery Info",
+    "rights": "© {year} Simba Super Market. All rights reserved.",
+    "madeIn": "Made in Rwanda 🇷🇼"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "backToBranches": "Back to branches",
+    "branchNotFound": "Branch not found",
+    "subtitle": "Pick up your order at any of our 9 Kigali locations",
+    "shoppingAt": "Shopping at",
+    "selectBranch": "Select a Branch",
+    "pickupTime": "Pick-up Time",
+    "pickupTimeNote": "Select a time between opening and closing hours",
+    "openTime": "Opens",
+    "closeTime": "Closes",
+    "inStock": "in stock",
+    "outOfStock": "Out of stock at this branch",
+    "placePickupOrder": "Place Pick-up Order",
+    "depositRequired": "A deposit of RWF {amount} is required to confirm your order.",
+    "depositNote": "This prevents no-shows and reserves your order.",
+    "payDeposit": "Pay RWF {amount} Deposit via MoMo",
+    "momoNumber": "MoMo Number",
+    "momoPlaceholder": "+250 7XX XXX XXX",
+    "momoNote": "Enter the number to charge the deposit",
+    "processingPayment": "Processing payment...",
+    "depositPaid": "Deposit paid! Your order is confirmed.",
+    "orderConfirmed": "Order Confirmed!",
+    "orderConfirmedDesc": "Order #{number} is confirmed at {branch}. Pick up at {time}.",
+    "viewMyOrders": "View My Orders",
+    "rating": "Branch Rating",
+    "reviewCount": "reviews",
+    "reviewBranch": "Rate Your Experience",
+    "reviewPlaceholder": "How was your pick-up experience?",
+    "submitReview": "Submit Review",
+    "reviewSuccess": "Thank you for your review!",
+    "noReviews": "No reviews yet",
+    "map": "View on Map",
+    "distance": "branches near you",
+    "myPickupOrders": "My Pick-up Orders",
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "preparing": "Preparing",
+      "ready": "Ready for Pick-up",
+      "picked_up": "Picked Up",
+      "cancelled": "Cancelled"
+    }
+  },
+  "search": {
+    "title": "Search Products",
+    "placeholder": "Ask anything - \"Do you have fresh milk?\" or \"I need something for breakfast\"",
+    "searching": "Searching...",
+    "results": "results found",
+    "noResults": "No products found for that query. Try something else.",
+    "poweredBy": "Powered by AI",
+    "tryExample": "Try: \"fresh vegetables\", \"cold drinks\", \"breakfast items\""
+  },
+  "branchDashboard": {
+    "title": "Branch Dashboard",
+    "panelTitle": "Branch Panel",
+    "dashboard": "Dashboard",
+    "overview": "Overview",
+    "orders": "Orders",
+    "hide": "Hide",
+    "assignedOrders": "Assigned Orders",
+    "stock": "Stock",
+    "backToStore": "Back to Store",
+    "signOut": "Sign Out",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications",
+    "markAllRead": "Mark all as read",
+    "acceptInvite": "Accept invite",
+    "declineInvite": "Decline invite",
+    "clearNotifications": "Clear notifications",
+    "viewAllNotifications": "View all notifications",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "preparing": "Preparing",
+    "ready": "Ready",
+    "pickedUp": "Picked Up",
+    "cancelled": "Cancelled",
+    "all": "All",
+    "delivery": "Delivery",
+    "pickup": "Pick-up",
+    "total": "Total",
+    "location": "Location",
+    "coordinates": "Coordinates",
+    "openMap": "Open map",
+    "ordersForBranch": "Orders for {branch}",
+    "ordersForYourBranch": "Orders for your branch",
+    "recentOrders": "Recent Orders",
+    "orderUpdated": "Order updated",
+    "orderAssigned": "Order assigned",
+    "newPickupOrder": "New pick-up order: {number}",
+    "inviteAccepted": "Invite accepted",
+    "inviteDeclined": "Invite declined",
+    "failed": "Failed",
+    "manage": "Manage",
+    "orderTitle": "Order {number}",
+    "currentAssignee": "Current assignee: {name}",
+    "assignHint": "Choose the staff member with the lightest load.",
+    "availableStaff": "{count} available",
+    "selectStaff": "Select staff",
+    "assigning": "Assigning...",
+    "reassignAndStart": "Reassign and start",
+    "assignAndStart": "Assign and start",
+    "updating": "Updating...",
+    "nextStep": "Next Step",
+    "cancelOrder": "Cancel Order",
+    "close": "Close",
+    "active": "active",
+    "hidden": "Hidden",
+    "update": "Update",
+    "save": "Save",
+    "cancel": "Cancel",
+    "searchProducts": "Search products...",
+    "stockUpdated": "Stock updated",
+    "cols": {
+      "order": "Order",
+      "customer": "Customer",
+      "items": "Items",
+      "total": "Total",
+      "pickupTime": "Pick-up Time",
+      "status": "Status",
+      "assignedTo": "Assigned To",
+      "actions": "Actions",
+      "product": "Product",
+      "category": "Category",
+      "price": "Price",
+      "branchStock": "Branch Stock"
+    },
+    "markPreparing": "Start Preparing",
+    "markReady": "Mark as Ready",
+    "markPickedUp": "Mark as Picked Up",
+    "customerInfo": "Customer Info",
+    "pickupAt": "Pick-up at",
+    "items": "Items",
+    "deposit": "Deposit",
+    "noOrders": "No orders",
+    "allOrders": "All Orders",
+    "stockManagement": "Stock Management",
+    "updateStock": "Update Stock",
+    "currentStock": "Current Stock",
+    "markOutOfStock": "Mark Out of Stock"
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Company Profile",
+      "title_line1": "About Simba",
+      "title_line2": "Supermarket",
+      "subtitle": "Rwanda's most admired supermarket - a testament to the country's economic resurgence, proudly meeting the daily needs of Kigali and beyond since 2008."
+    },
+    "origin": {
+      "eyebrow": "Origin History",
+      "heading": "Where It All Began",
+      "paragraph1": "SIMBA SUPERMARKET LTD was established on <strong>December 3, 2007</strong>, as a Limited Liability Company with a clear ambition: to become the region's largest retail outlet. Founded by <strong>Mr. Teklay Teame</strong> and his partners, the company imports products from Europe, Egypt, Dubai, China, Turkey, and beyond to ensure a truly diverse product range.",
+      "paragraph2": "The official launch on <strong>August 8, 2008</strong> created over <strong>450 jobs</strong> for Rwandese citizens. With 11 branches across Rwanda, Simba provides a one-stop shopping experience - butchery, bakery, coffee shop, and more - serving international organisations, local NGOs, private companies, and government ministries."
+    },
+    "values": {
+      "eyebrow": "Beliefs & Values",
+      "heading": "What We Stand For",
+      "items": {
+        "respect": {
+          "title": "Respect for the Individual",
+          "body": "We're hardworking, ordinary people who've teamed up to accomplish extraordinary things. We treat each other with dignity and encourage everyone to express their thoughts - this is how we show respect."
+        },
+        "service": {
+          "title": "Service to Customers",
+          "body": "Our customers are the reason we're in business. We offer quality merchandise at the lowest prices with the best customer service possible, always seeking to exceed expectations."
+        },
+        "excellence": {
+          "title": "Striving for Excellence",
+          "body": "We're proud of our accomplishments but never satisfied. We constantly reach further to bring new ideas and goals to life - Is this the best I can do? That question drives everything."
+        }
+      }
+    },
+    "milestones": {
+      "eyebrow": "Milestones",
+      "heading": "Our Journey",
+      "items": {
+        "2007": {
+          "label": "Founded",
+          "desc": "Established as a Limited Liability Company on December 3rd by Mr. Teklay Teame and partners."
+        },
+        "2008": {
+          "label": "1st Branch",
+          "desc": "Official launch on August 8th - Simba Centenary opens, creating over 450 jobs for Rwandese citizens."
+        },
+        "2013": {
+          "label": "1st Award",
+          "desc": "1st Best Exhibitor - Retail and Distribution."
+        },
+        "2014": {
+          "label": "Expanding",
+          "desc": "Simba Gishushu branch opens. Awarded Best Exhibitor Retail & Distribution - EBM Best Award."
+        },
+        "2015": {
+          "label": "Growing",
+          "desc": "Simba Kimironko branch opens. Awarded RRA Compliant Taxpayer status."
+        },
+        "2016": {
+          "label": "Scaling Up",
+          "desc": "Two new branches open - Simba Kicukiro and Simba Kigali Height."
+        },
+        "2019": {
+          "label": "City Centre",
+          "desc": "Simba UTC opens in the heart of Kigali."
+        },
+        "2020": {
+          "label": "Merchant of Year",
+          "desc": "Awarded 1st Merchant of the Year in Rwanda."
+        },
+        "2023": {
+          "label": "Major Expansion",
+          "desc": "Five new branches launch simultaneously - Simba Gacuriro, Simba Gikondo, Simba Sonatube, Simba Kisimenti, and Simba Rebero."
+        },
+        "2024": {
+          "label": "Going Digital",
+          "desc": "Simba Online Sales launches - bringing the supermarket experience directly to customers' doors."
+        }
+      }
+    },
+    "categories": {
+      "eyebrow": "What We Offer",
+      "heading": "Product Categories",
+      "items": {
+        "fruitsVeg": "Fruits & Vegetables",
+        "meats": "Meats",
+        "frozen": "Frozen",
+        "winesSpirits": "Wines & Spirits",
+        "furniture": "Furniture",
+        "electronics": "Electronics",
+        "utensils": "Utensils & Ornaments",
+        "homecare": "Homecare",
+        "baby": "Baby Products",
+        "gym": "Gym & Sports",
+        "healthBeauty": "Health & Beauty",
+        "bakery": "Bakery"
+      }
+    },
+    "services": {
+      "eyebrow": "Services",
+      "heading": "Everything Under One Roof",
+      "items": {
+        "supermarket": {
+          "title": "Supermarket",
+          "desc": "11 branches across Rwanda offering a wide range of products for daily needs."
+        },
+        "coffee": {
+          "title": "Restaurant & Coffee Shop",
+          "desc": "Trucillo Café and coffee shop services across 5 Simba branches."
+        },
+        "arcade": {
+          "title": "Simba Arcade",
+          "desc": "Arcade gaming entertainment available at Simba Gacuriro branch."
+        },
+        "online": {
+          "title": "Online Sales",
+          "desc": "Extending our reach to your door - Simba Supermarket is everywhere."
+        },
+        "bakery": {
+          "title": "Bakery Factory",
+          "desc": "In-house bakery factory producing fresh goods for all our branches."
+        }
+      }
+    },
+    "branches": {
+      "eyebrow": "Locations",
+      "heading": "Our 11 Branches"
+    },
+    "coffee": {
+      "eyebrow": "Coffee",
+      "heading": "Coffee Shops",
+      "desc": "Simba Coffee Shops and one Trucillo Café across five branches, offering a relaxing experience for every shopper."
+    },
+    "awards": {
+      "eyebrow": "Achievements",
+      "heading": "Award-Winning Excellence",
+      "items": {
+        "2013": "1st Best Exhibitor - Retail & Distribution",
+        "2014": "Best Exhibitor Retail & Distribution - EBM",
+        "2015": "RRA Compliant Taxpayer Award",
+        "2020": "1st Merchant of the Year - Rwanda"
+      }
+    }
+  },
+  "faq": {
+    "hero": {
+      "eyebrow": "Help Centre",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find quick answers to the most common questions about shopping at Simba Supermarket."
+    },
+    "categories": {
+      "orders": "Orders",
+      "shipping": "Shipping",
+      "returns": "Returns",
+      "products": "Products",
+      "account": "Account"
+    },
+    "questions": {
+      "orders": {
+        "0": {
+          "q": "How do I place an order online?",
+          "a": "Visit our website, browse products, add items to your cart, and proceed to checkout. You will need to create an account or sign in to complete your purchase."
+        },
+        "1": {
+          "q": "Can I modify or cancel my order after placing it?",
+          "a": "Orders can be modified or cancelled within 30 minutes of placing them. After that window, the order enters fulfilment and changes are no longer possible. Please contact us immediately if you need to make changes."
+        },
+        "2": {
+          "q": "How will I know my order has been confirmed?",
+          "a": "You will receive a confirmation email with your order number and summary immediately after checkout. You can also track your order status in your account dashboard."
+        },
+        "3": {
+          "q": "What payment methods do you accept?",
+          "a": "We accept MTN Mobile Money, Airtel Money, Visa, Mastercard, and cash on delivery for eligible orders. All online transactions are secured with industry-standard encryption."
+        }
+      },
+      "shipping": {
+        "0": {
+          "q": "Which areas do you deliver to?",
+          "a": "We currently deliver to all major neighbourhoods within Kigali city, including Nyamirambo, Kimironko, Kicukiro, Gasabo, and surrounding areas. Expand to more districts is ongoing."
+        },
+        "1": {
+          "q": "How long does delivery take?",
+          "a": "Standard delivery takes 2–4 hours for in-stock items ordered before 3 PM. Express delivery is available within 1 hour for an additional fee. Same-day delivery is guaranteed for orders placed before noon."
+        },
+        "2": {
+          "q": "Is there a minimum order for delivery?",
+          "a": "Yes, the minimum order for delivery is 5,000 RWF. Orders below this amount are eligible for in-store pickup only."
+        },
+        "3": {
+          "q": "How much does delivery cost?",
+          "a": "Standard delivery costs 1,000 RWF. Express delivery costs 2,500 RWF. Orders above 50,000 RWF qualify for free standard delivery."
+        }
+      },
+      "returns": {
+        "0": {
+          "q": "What is your return policy?",
+          "a": "We accept returns within 7 days of purchase for most non-perishable items, provided they are unopened and in their original packaging with proof of purchase."
+        },
+        "1": {
+          "q": "How do I initiate a return?",
+          "a": "Contact our customer support team via the Contact Us page or call our helpline. Our team will guide you through the return process and arrange collection or drop-off."
+        },
+        "2": {
+          "q": "When will I receive my refund?",
+          "a": "Refunds are processed within 3–5 business days once the return is received and inspected. Mobile money refunds are typically faster than card refunds."
+        }
+      },
+      "products": {
+        "0": {
+          "q": "Are your products fresh and quality-assured?",
+          "a": "Absolutely. All fresh produce, meats, and bakery items are sourced daily and quality-checked before being placed on shelves. We adhere strictly to food safety standards."
+        },
+        "1": {
+          "q": "Do you stock international brands?",
+          "a": "Yes, Simba imports products from Europe, Dubai, China, Egypt, Turkey, and other countries. You will find both international brands and quality local products across all categories."
+        },
+        "2": {
+          "q": "Can I check product availability before visiting?",
+          "a": "Yes, you can browse our full catalogue on the website or app and filter by branch location to see real-time stock availability."
+        }
+      },
+      "account": {
+        "0": {
+          "q": "How do I create an account?",
+          "a": "Click Sign Up on the top navigation, enter your name, phone number or email address, and create a password. You can also sign up quickly using your Google account."
+        },
+        "1": {
+          "q": "I forgot my password. What should I do?",
+          "a": "Click Forgot Password on the login page and enter your registered email address. You will receive a reset link within a few minutes. Check your spam folder if you do not see it."
+        },
+        "2": {
+          "q": "How do I update my delivery address?",
+          "a": "Log in to your account, go to Settings, and select Addresses. You can add, edit, or remove delivery addresses from there. Changes take effect on your next order."
+        }
+      }
+    },
+    "contact": {
+      "heading": "Still have questions?",
+      "body": "Our team is available 7 days a week to help you with anything you need.",
+      "cta": "Contact Us"
+    }
+  },
+  "returns": {
+    "hero": {
+      "eyebrow": "Customer Care",
+      "title": "Returns Policy",
+      "subtitle": "We want you to be completely satisfied with every purchase. If something is not right, we will make it right."
+    },
+    "stats": {
+      "window": "7-day return window",
+      "refundTime": "Refunds in 3–5 business days",
+      "condition": "Original packaging required"
+    },
+    "eligibility": {
+      "heading": "What can be returned?",
+      "eligible": {
+        "heading": "Eligible for return",
+        "items": {
+          "unopened": "Unopened items in original packaging",
+          "damaged": "Damaged or defective products on arrival",
+          "wrong": "Wrong item delivered",
+          "quality": "Quality does not match description"
+        }
+      },
+      "ineligible": {
+        "heading": "Not eligible for return",
+        "items": {
+          "perishable": "Fresh produce, meats, and perishable goods",
+          "used": "Opened or used personal care and cosmetics",
+          "noReceipt": "Items without proof of purchase"
+        }
+      }
+    },
+    "process": {
+      "heading": "How to return an item",
+      "subtitle": "Follow these simple steps and our team will handle the rest.",
+      "steps": {
+        "contact": {
+          "title": "Contact our team",
+          "desc": "Reach out via the Contact Us page, call our helpline, or visit any Simba branch within 7 days of purchase."
+        },
+        "pack": {
+          "title": "Pack the item",
+          "desc": "Ensure the item is in its original packaging with all accessories, tags, and your receipt or order confirmation."
+        },
+        "drop": {
+          "title": "Drop off or arrange collection",
+          "desc": "Drop the item at any Simba branch or request a collection from your address for a small fee."
+        },
+        "refund": {
+          "title": "Receive your refund",
+          "desc": "Once inspected and approved, your refund will be issued within 3–5 business days via your original payment method."
+        }
+      }
+    },
+    "refunds": {
+      "heading": "Refund options",
+      "methods": {
+        "original": {
+          "title": "Original payment method",
+          "desc": "Refunded to the card or mobile money account used for the original purchase."
+        },
+        "storeCredit": {
+          "title": "Store credit",
+          "desc": "Receive the full amount as store credit, valid for 12 months across all Simba branches."
+        },
+        "exchange": {
+          "title": "Exchange",
+          "desc": "Swap for the same item or an item of equal value at any Simba branch."
+        }
+      }
+    },
+    "note": {
+      "heading": "Important note",
+      "body": "Simba Supermarket reserves the right to refuse returns that do not meet our policy conditions. In-store purchases must be returned to a physical branch; online orders may be returned in-store or via our collection service."
+    }
+  },
+  "privacy": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: January 2025"
+    },
+    "intro": "At Simba Supermarket, your privacy matters deeply to us. This policy explains how we collect, use, and protect your personal information when you shop with us online or in-store.",
+    "sections": {
+      "collection": {
+        "nav": "Data We Collect",
+        "heading": "Information We Collect",
+        "body": "We collect information you provide directly and information generated when you use our services.",
+        "points": {
+          "0": "Name, email address, and phone number when you register",
+          "1": "Delivery address and payment method details",
+          "2": "Order history and product browsing behaviour",
+          "3": "Device type, IP address, and browser information"
+        }
+      },
+      "use": {
+        "nav": "How We Use It",
+        "heading": "How We Use Your Information",
+        "body": "Your data is used solely to improve your shopping experience and fulfil our service commitments.",
+        "points": {
+          "0": "Processing and fulfilling your orders",
+          "1": "Sending order confirmations and delivery updates",
+          "2": "Personalising product recommendations",
+          "3": "Improving our website and service quality"
+        }
+      },
+      "sharing": {
+        "nav": "Data Sharing",
+        "heading": "Sharing Your Information",
+        "body": "We do not sell your personal data. We may share it only with trusted service partners.",
+        "points": {
+          "0": "Delivery partners to fulfil your orders",
+          "1": "Payment processors to handle transactions securely",
+          "2": "Analytics providers to improve our services",
+          "3": "Regulatory authorities when required by law"
+        }
+      },
+      "security": {
+        "nav": "Security",
+        "heading": "How We Protect Your Data",
+        "body": "We use industry-standard security practices including SSL encryption, secure servers, and regular security audits to protect your personal information from unauthorised access or disclosure."
+      },
+      "cookies": {
+        "nav": "Cookies",
+        "heading": "Cookies & Tracking",
+        "body": "We use cookies to remember your preferences, keep you logged in, and understand how you use our site. You can disable cookies in your browser settings, though some features may not work as expected."
+      },
+      "contact": {
+        "nav": "Contact",
+        "heading": "Questions About Your Privacy",
+        "body": "If you have any questions about this policy or wish to exercise your data rights, please contact our Data Protection Officer at privacy@simbasupermarket.rw or visit any of our branches in person."
+      }
+    },
+    "rights": {
+      "heading": "Your Rights",
+      "body": "Under applicable data protection law, you have the following rights regarding your personal information.",
+      "items": {
+        "access": "Right to Access",
+        "correct": "Right to Correct",
+        "delete": "Right to Delete",
+        "portability": "Data Portability"
+      }
+    }
+  },
+  "delivery": {
+    "hero": {
+      "eyebrow": "Delivery",
+      "title": "Delivery Information",
+      "subtitle": "Fast, reliable delivery from our branches directly to your door across Kigali and beyond."
+    },
+    "stats": {
+      "branches": {
+        "value": "11",
+        "label": "Branches"
+      },
+      "minOrder": {
+        "value": "5K RWF",
+        "label": "Min. Order"
+      },
+      "coverage": {
+        "value": "Kigali",
+        "label": "Coverage"
+      }
+    },
+    "options": {
+      "eyebrow": "Delivery Options",
+      "heading": "Choose your delivery speed",
+      "items": {
+        "standard": {
+          "title": "Standard",
+          "time": "2–4 hours",
+          "price": "1,000 RWF",
+          "note": "Best for planned shopping. Order before 3 PM for same-day standard delivery."
+        },
+        "express": {
+          "title": "Express",
+          "time": "Within 1 hour",
+          "price": "2,500 RWF",
+          "note": "Need it fast? Express delivery brings your order in under an hour from your nearest branch."
+        },
+        "sameDay": {
+          "title": "Free Delivery",
+          "time": "2–4 hours",
+          "price": "Free",
+          "note": "Orders above 50,000 RWF qualify for complimentary standard delivery."
+        }
+      }
+    },
+    "zones": {
+      "eyebrow": "Coverage",
+      "heading": "Delivery Zones",
+      "subtitle": "We currently deliver to all major areas within Kigali. More districts coming soon."
+    },
+    "howItWorks": {
+      "heading": "How delivery works",
+      "steps": {
+        "order": {
+          "title": "Place your order",
+          "desc": "Add items to your cart and select delivery at checkout."
+        },
+        "confirm": {
+          "title": "Order confirmed",
+          "desc": "You receive an SMS and email confirmation instantly."
+        },
+        "dispatch": {
+          "title": "Dispatched",
+          "desc": "Our team packs your order at the nearest branch."
+        },
+        "deliver": {
+          "title": "Delivered to you",
+          "desc": "Your rider delivers to your door within the promised window."
+        }
+      }
+    },
+    "important": {
+      "heading": "Good to know",
+      "items": {
+        "cutoff": {
+          "title": "Order cut-off times",
+          "desc": "Orders placed after 7 PM will be delivered the next morning from 8 AM."
+        },
+        "packaging": {
+          "title": "Packaging",
+          "desc": "All orders are packed hygienically and securely to preserve quality."
+        },
+        "tracking": {
+          "title": "Order tracking",
+          "desc": "Track your delivery in real-time via the app or your SMS confirmation link."
+        },
+        "failed": {
+          "title": "Failed delivery",
+          "desc": "If we cannot reach you, we will hold your order for 2 hours before returning it. A re-delivery fee may apply."
+        }
+      }
+    },
+    "contact": {
+      "heading": "Delivery questions?",
+      "body": "Our support team is available 7 days a week.",
+      "cta": "Get in touch"
+    }
+  },
+  "terms": {
+    "hero": {
+      "eyebrow": "Legal",
+      "title": "Terms of Service",
+      "subtitle": "Please read these terms carefully before using our website, mobile app, or any Simba Supermarket service.",
+      "effective": "Effective: January 1, 2025",
+      "jurisdiction": "Governed by Rwandan law"
+    },
+    "banner": "By accessing or using any Simba Supermarket service, you confirm that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree, please do not use our services.",
+    "toc": "Contents",
+    "sections": {
+      "acceptance": {
+        "nav": "Acceptance",
+        "heading": "Acceptance of Terms",
+        "body": "These Terms of Service govern your use of the Simba Supermarket website, mobile application, and all related services. By creating an account, placing an order, or simply browsing our platform, you acknowledge that you have read and agree to these terms. These terms apply to all users including visitors, registered customers, and business clients. Simba Supermarket reserves the right to update these terms at any time. Continued use of our services after changes constitutes acceptance of the revised terms."
+      },
+      "purchases": {
+        "nav": "Purchases",
+        "heading": "Purchases & Orders",
+        "body": "When you place an order with Simba Supermarket, you are making an offer to purchase goods subject to these terms. All orders are subject to availability and confirmation.",
+        "points": {
+          "0": "Orders are confirmed only upon receipt of payment or payment authorisation",
+          "1": "Prices are displayed in Rwandan Francs (RWF) and are inclusive of applicable taxes",
+          "2": "We reserve the right to cancel orders due to stock unavailability or pricing errors",
+          "3": "Bulk or commercial orders may require prior arrangement and are subject to separate terms"
+        }
+      },
+      "payments": {
+        "nav": "Payments",
+        "heading": "Payment Terms",
+        "body": "Simba Supermarket accepts MTN Mobile Money, Airtel Money, Visa, Mastercard, and cash on delivery for eligible orders. All online payments are processed through secure, encrypted gateways. By providing payment details, you confirm that you are authorised to use the payment method. In the event of a failed payment, your order will be cancelled and you will be notified. Any disputes regarding charges should be raised with our customer support team within 14 days of the transaction."
+      },
+      "liability": {
+        "nav": "Liability",
+        "heading": "Limitation of Liability",
+        "body": "To the fullest extent permitted by law, Simba Supermarket shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services.",
+        "points": {
+          "0": "We are not liable for delays caused by circumstances beyond our reasonable control",
+          "1": "Our liability for any claim is limited to the value of the order in dispute",
+          "2": "We do not guarantee uninterrupted or error-free operation of our digital platforms",
+          "3": "Product images are for illustration only; actual products may vary slightly"
+        }
+      },
+      "prohibited": {
+        "nav": "Prohibited Use",
+        "heading": "Prohibited Activities",
+        "body": "You agree not to misuse our services or assist others in doing so. The following activities are strictly prohibited:",
+        "points": {
+          "0": "Using our platform for any unlawful, fraudulent, or harmful purpose",
+          "1": "Attempting to gain unauthorised access to our systems or data",
+          "2": "Submitting false, misleading, or abusive reviews or content",
+          "3": "Reselling products purchased from Simba without prior written consent"
+        }
+      },
+      "disputes": {
+        "nav": "Disputes",
+        "heading": "Dispute Resolution",
+        "body": "In the event of a dispute arising from these terms or your use of our services, we encourage you to first contact our customer support team to seek an amicable resolution. If a dispute cannot be resolved informally, it shall be submitted to the competent courts of Rwanda in accordance with applicable Rwandan law. Simba Supermarket is committed to fair and transparent resolution of all customer concerns."
+      },
+      "changes": {
+        "nav": "Changes",
+        "heading": "Changes to These Terms",
+        "body": "Simba Supermarket reserves the right to modify these Terms of Service at any time. When we make significant changes, we will notify registered users via email or an in-app notification at least 14 days before the changes take effect. The effective date at the top of this page will always reflect the most recent revision. Your continued use of our services after the effective date constitutes acceptance of the updated terms."
+      },
+      "contact": {
+        "nav": "Contact",
+        "heading": "Contact Us",
+        "body": "If you have any questions, concerns, or requests regarding these Terms of Service, please do not hesitate to reach out to us. Our legal and customer support teams are available to assist you. You can contact us via the Contact Us page on our website, by emailing legal@simbasupermarket.rw, or by visiting any of our 11 branches across Rwanda in person."
+      }
+    },
+    "agreement": {
+      "heading": "You are protected",
+      "body": "These terms exist to protect both you and Simba Supermarket. We are committed to transparency, fairness, and exceptional service for every customer.",
+      "ctaContact": "Contact Us",
+      "ctaPrivacy": "Privacy Policy"
+    }
+  }
+}

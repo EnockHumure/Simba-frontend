@@ -1,0 +1,921 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ShoppingCart,
+  Search,
+  Menu,
+  X,
+  Heart,
+  User,
+  LogOut,
+  Settings,
+  Package,
+  ChevronDown,
+  ArrowRight,
+  MapPin,
+  Bell,
+  CheckCheck,
+} from "lucide-react";
+import {
+  useCartStore,
+  useUIStore,
+  useBranchStore,
+  useGuestCartStore,
+} from "@/store";
+import { useSession, signOut } from "@/lib/auth-client";
+import { useQuery } from "@tanstack/react-query";
+import { categoryApi, branchApi, cartApi } from "@/lib/api";
+import { cn, resolveLocalizedPath } from "@/lib/utils";
+import { useNotifications } from "@/hooks/useSocket";
+import { useNotificationStore } from "@/store";
+import { ThemeSwitcherV1 } from "@/lib/theme-switcher-v1";
+import LanguageSwitcherV1 from "../common/LanguageSwitcherV1";
+import Image from "next/image";
+import { toast } from "sonner";
+
+export function Navbar() {
+  const t = useTranslations("nav");
+  const tBranch = useTranslations("branches");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { data: session } = useSession();
+  const { openCart } = useCartStore();
+  const cartItems = useCartStore((s) => s.items);
+  const itemCount = useCartStore((s) => s.getItemCount());
+  const { selectedBranchId, selectedBranchName, setBranch } = useBranchStore();
+  const guestCart = useGuestCartStore();
+  const {
+    searchOpen,
+    mobileMenuOpen,
+    toggleSearch,
+    openMobileMenu,
+    closeMobileMenu,
+  } = useUIStore();
+  const isAdminRoute = pathname.includes("/admin");
+  const isBranchRoute = pathname.includes("/branch-dashboard");
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [userOpen, setUserOpen] = useState(false);
+  const [catOpen, setCatOpen] = useState(false);
+  const [branchOpen, setBranchOpen] = useState(false);
+  const [branchChecking, setBranchChecking] = useState(false);
+  const [branchSwitchPending, setBranchSwitchPending] = useState<{
+    branch: any;
+    available: Array<{
+      productId: string;
+      quantity: number;
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        price: number;
+        comparePrice?: number;
+        images: string[];
+        stock: number;
+      };
+    }>;
+    unavailable: Array<{
+      productId: string;
+      name: string;
+      requested: number;
+      available: number;
+    }>;
+  } | null>(null);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const user = session?.user as any;
+  const userRole = user?.role as string | undefined;
+  const isLoggedIn = !!user;
+  useNotifications(user?.id);
+  const notifications = useNotificationStore((s) => s.items);
+  const unreadCount = useNotificationStore((s) => s.unreadCount);
+  const markRead = useNotificationStore((s) => s.markRead);
+  const markAllRead = useNotificationStore((s) => s.markAllRead);
+
+  const { data: categories } = useQuery({
+    queryKey: ["categories", { withProductsOnly: true, limit: 6 }],
+    queryFn: () =>
+      categoryApi
+        .list({ limit: 6, withProductsOnly: true })
+        .then((r) => r.data),
+    staleTime: 1000 * 60 * 10,
+  });
+
+  const { data: branches } = useQuery({
+    queryKey: ["branches"],
+    queryFn: () => branchApi.list().then((r) => r.data),
+    staleTime: 1000 * 60 * 30,
+  });
+
+  useEffect(() => {
+    if (branches && !selectedBranchId && branches.length > 0) {
+      const b = branches[0];
+      setBranch(b.id, b.slug, b.name);
+    }
+  }, [branches, selectedBranchId, setBranch]);
+
+  const migrateCartToBranch = async (
+    branch: any,
+    keepItems: Array<{
+      productId: string;
+      quantity: number;
+      product: {
+        id: string;
+        name: string;
+        slug: string;
+        price: number;
+        comparePrice?: number;
+        images: string[];
+        stock: number;
+      };
+    }>,
+  ) => {
+    if (isLoggedIn) {
+      if (selectedBranchId && selectedBranchId !== branch.id) {
+        await cartApi.clear(selectedBranchId);
+      }
+
+      if (!keepItems.length) return;
+
+      for (const item of keepItems) {
+        await cartApi.add({
+          productId: item.productId,
+          quantity: item.quantity,
+          branchId: branch.id,
+        });
+      }
+      return;
+    }
+
+    guestCart.clear();
+    if (!keepItems.length) return;
+    for (const item of keepItems) {
+      guestCart.add({
+        productId: item.productId,
+        quantity: item.quantity,
+        product: item.product,
+      });
+    }
+  };
+
+  const verifyBranchSwitch = async (branch: any) => {
+    if (branch.id === selectedBranchId) {
+      setBranchOpen(false);
+      return;
+    }
+
+    const currentItems = cartItems;
+    if (!currentItems.length) {
+      setBranch(branch.id, branch.slug, branch.name);
+      setBranchOpen(false);
+      return;
+    }
+
+    setBranchChecking(true);
+    try {
+      const productIds = currentItems.map((item) => item.productId).join(",");
+      const res = await branchApi.stock(branch.id, { productIds });
+      const branchItems = Array.isArray(res.data?.data) ? res.data.data : [];
+      const stockMap = new Map<string, { stock: number }>(
+        branchItems.map((entry: any) => [
+          entry.productId,
+          { stock: Number(entry.stock) || 0 },
+        ]),
+      );
+
+      const unavailable = currentItems
+        .map((item) => {
+          const stockEntry = stockMap.get(item.productId);
+          const available = stockEntry?.stock ?? 0;
+          if (!stockEntry || available < item.quantity) {
+            return {
+              productId: item.productId,
+              name: item.product.name,
+              requested: item.quantity,
+              available,
+            };
+          }
+          return null;
+        })
+        .filter(Boolean) as Array<{
+        productId: string;
+        name: string;
+        requested: number;
+        available: number;
+      }>;
+
+      const available = currentItems
+        .filter((item) => {
+          const stockEntry = stockMap.get(item.productId);
+          const stock = stockEntry?.stock ?? 0;
+          return stockEntry && stock >= item.quantity;
+        })
+        .map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          product: item.product,
+        }));
+
+      if (unavailable.length === 0) {
+        await migrateCartToBranch(branch, available);
+        setBranch(branch.id, branch.slug, branch.name);
+        setBranchOpen(false);
+        return;
+      }
+
+      setBranchSwitchPending({ branch, available, unavailable });
+      setBranchOpen(false);
+    } catch {
+      toast.error("Failed to check branch stock");
+    } finally {
+      setBranchChecking(false);
+    }
+  };
+
+  const confirmBranchSwitch = async () => {
+    if (!branchSwitchPending) return;
+    try {
+      await migrateCartToBranch(
+        branchSwitchPending.branch,
+        branchSwitchPending.available,
+      );
+      setBranch(
+        branchSwitchPending.branch.id,
+        branchSwitchPending.branch.slug,
+        branchSwitchPending.branch.name,
+      );
+      setBranchSwitchPending(null);
+    } catch {
+      toast.error("Failed to switch branch");
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (searchOpen) searchRef.current?.focus();
+  }, [searchOpen]);
+
+  const handleSearch = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(
+        `/${locale}/shop?search=${encodeURIComponent(searchQuery.trim())}`,
+      );
+      toggleSearch();
+      setSearchQuery("");
+    }
+  };
+
+  if (isAdminRoute || isBranchRoute) return null;
+
+  return (
+    <>
+      {/* Top bar with Branch Selector */}
+      <div className="bg-primary text-primary-foreground text-xs py-1.5 px-4 flex items-center justify-start">
+        <div className="flex items-center gap-2">
+          <MapPin className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">{tBranch("shoppingAt")}:</span>
+          <div className="relative">
+            <button
+              onClick={() => setBranchOpen(!branchOpen)}
+              className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-semibold hover:bg-white/20 transition-colors"
+            >
+              {selectedBranchName?.replace("Simba Supermarket ", "") ||
+                tBranch("selectBranch")}
+              <ChevronDown className="w-3 h-3" />
+            </button>
+
+            <AnimatePresence>
+              {branchOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 5 }}
+                  className="absolute top-full left-0 mt-2 w-64 bg-card text-foreground border border-border rounded-xl shadow-2xl z-[60] overflow-hidden"
+                >
+                  <div className="px-4 py-2 border-b border-border bg-muted/50">
+                    <p className="font-semibold text-[10px] uppercase tracking-wider text-muted-foreground">
+                      {tBranch("selectBranch")}
+                    </p>
+                  </div>
+                  <div className="max-h-60 overflow-y-auto">
+                    {branches?.map((b: any) => (
+                      <button
+                        key={b.id}
+                        onClick={() => void verifyBranchSwitch(b)}
+                        disabled={branchChecking}
+                        className={cn(
+                          "w-full text-left px-4 py-2.5 text-sm hover:bg-accent transition-colors flex flex-col gap-0.5",
+                          selectedBranchId === b.id && "bg-accent text-primary",
+                        )}
+                      >
+                        <span className="font-medium">
+                          {b.name.replace("Simba Supermarket ", "")}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground line-clamp-1">
+                          {b.address}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full transition-all duration-300",
+          scrolled
+            ? "bg-background/95 backdrop-blur-sm shadow-md border-b border-border"
+            : "bg-background border-b border-border",
+        )}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center h-16 gap-4">
+            {/* Logo */}
+            <Link
+              href={`/${locale}`}
+              className="flex items-center gap-2 flex-shrink-0"
+            >
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/simbalogo.png"
+                  alt="Simba Super Market logo"
+                  width={35}
+                  height={35}
+                />
+              </div>
+              <div className="hidden sm:block">
+                <div className="font-bold text-base leading-tight text-foreground">
+                  Simba
+                </div>
+                <div className="text-[10px] text-muted-foreground leading-tight uppercase tracking-wider">
+                  Super Market
+                </div>
+              </div>
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-1 flex-1 ml-4">
+              <Link
+                href={`/${locale}`}
+                className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent transition-colors"
+              >
+                {t("home")}
+              </Link>
+
+              {/* Categories dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setCatOpen(true)}
+                onMouseLeave={() => setCatOpen(false)}
+              >
+                <button className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent transition-colors flex items-center gap-1">
+                  {t("categories")} <ChevronDown className="w-3 h-3" />
+                </button>
+                <AnimatePresence>
+                  {catOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      className="absolute top-full left-0 mt-1 w-56 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                    >
+                      {categories?.map((cat: any) => (
+                        <Link
+                          key={cat.id}
+                          href={`/${locale}/shop?category=${cat.slug}`}
+                          onClick={() => setCatOpen(false)}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-accent hover:text-primary transition-colors"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                          {cat.name}
+                        </Link>
+                      ))}
+                      <div className="border-t border-border">
+                        <Link
+                          href={`/${locale}/shop`}
+                          onClick={() => setCatOpen(false)}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-primary font-medium hover:bg-accent transition-colors"
+                        >
+                          {t("shop")} <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link
+                href={`/${locale}/branches`}
+                className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent transition-colors"
+              >
+                {t("branches")}
+              </Link>
+              <Link
+                href={`/${locale}/blog`}
+                className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent transition-colors"
+              >
+                {t("blog")}
+              </Link>
+              <Link
+                href={`/${locale}/contact`}
+                className="px-3 py-2 rounded-md text-sm font-medium text-foreground/80 hover:text-primary hover:bg-accent transition-colors"
+              >
+                {t("contact")}
+              </Link>
+            </nav>
+
+            {/* Desktop search bar */}
+            <form
+              onSubmit={handleSearch}
+              className="hidden md:flex flex-1 max-w-xs xl:max-w-sm"
+            >
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder={t("searchPlaceholder")}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 text-sm bg-muted border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                />
+              </div>
+            </form>
+
+            {/* Actions */}
+            <div className="flex items-center gap-1 ml-auto lg:ml-0">
+              {/* Mobile search */}
+              <button
+                onClick={toggleSearch}
+                className="md:hidden p-2 rounded-lg hover:bg-accent text-foreground/70 hover:text-primary transition-colors"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
+              <ThemeSwitcherV1 />
+
+              {/* Language */}
+              <LanguageSwitcherV1
+                userOpen={userOpen}
+                setUserOpen={setUserOpen}
+              />
+
+              {/* Wishlist */}
+              {user && (
+                <Link
+                  href={`/${locale}/wishlist`}
+                  className="hidden sm:flex p-2 rounded-lg hover:bg-accent text-foreground/70 hover:text-primary transition-colors"
+                >
+                  <Heart className="w-5 h-5" />
+                </Link>
+              )}
+
+              {/* Cart */}
+              <button
+                onClick={openCart}
+                className="relative p-2 rounded-lg hover:bg-accent text-foreground/70 hover:text-primary transition-colors"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {itemCount > 9 ? "9+" : itemCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Notifications */}
+              {user && (
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+                        closeMobileMenu();
+                        router.push(`/${locale}/admin/notifications`);
+                      } else {
+                        setNotifOpen((v) => !v);
+                      }
+                    }}
+                    className="relative p-2 rounded-lg hover:bg-accent text-foreground/70 hover:text-primary transition-colors"
+                    aria-label={t("notifications")}
+                  >
+                    <Bell className="w-5 h-5" />
+                    {unreadCount > 0 && (
+                      <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
+                        {unreadCount > 9 ? "9+" : unreadCount}
+                      </span>
+                    )}
+                  </button>
+                  <AnimatePresence>
+                    {notifOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.98, y: 6 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.98, y: 6 }}
+                        className="absolute right-0 top-full mt-2 w-80 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                      >
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+                          <p className="text-sm font-semibold">
+                            {t("notifications")}
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => markAllRead()}
+                            className="text-xs text-primary hover:underline"
+                          >
+                            {t("markAllRead")}
+                          </button>
+                        </div>
+                        <div className="max-h-80 overflow-y-auto">
+                          {notifications.length === 0 ? (
+                            <div className="px-4 py-8 text-center text-sm text-muted-foreground">
+                              {t("noNotifications")}
+                            </div>
+                          ) : (
+                            notifications.slice(0, 5).map((n) => (
+                              <button
+                                key={n.id}
+                                type="button"
+                                onClick={() => {
+                                  markRead(n.id);
+                                  setNotifOpen(false);
+                                  if (n.link) {
+                                    router.push(resolveLocalizedPath(n.link, locale));
+                                  }
+                                }}
+                                className={cn(
+                                  "w-full text-left px-4 py-3 border-b border-border/60 last:border-0 hover:bg-accent transition-colors",
+                                  !n.read && "bg-primary/5",
+                                )}
+                              >
+                                <div className="flex items-start gap-3">
+                                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                    <CheckCheck className="w-4 h-4 text-primary" />
+                                  </div>
+                                  <div className="min-w-0">
+                                    <p className="text-sm font-medium truncate">
+                                      {n.title}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground line-clamp-2">
+                                      {n.message}
+                                    </p>
+                                  </div>
+                                </div>
+                              </button>
+                            ))
+                          )}
+                        </div>
+                        <div className="px-4 py-3 border-t border-border bg-muted/40">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setNotifOpen(false);
+                              router.push(`/${locale}/admin/notifications`);
+                            }}
+                            className="text-sm font-medium text-primary hover:underline"
+                          >
+                            {t("viewMore")}
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+
+              {/* User */}
+              {user ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setUserOpen(!userOpen)}
+                    className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full hover:bg-accent transition-colors"
+                  >
+                    <div className="w-7 h-7 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                      {user.name?.[0]?.toUpperCase() || "U"}
+                    </div>
+                    <span className="hidden sm:inline text-sm font-medium text-foreground max-w-[80px] truncate">
+                      {user.name?.split(" ")[0]}
+                    </span>
+                    <ChevronDown className="w-3 h-3 text-muted-foreground" />
+                  </button>
+                  <AnimatePresence>
+                    {userOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="absolute right-0 top-full mt-2 w-52 bg-card border border-border rounded-xl shadow-xl overflow-hidden z-50"
+                      >
+                        <div className="px-4 py-3 border-b border-border">
+                          <p className="text-sm font-semibold text-foreground">
+                            {user.name}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {user.email}
+                          </p>
+                        </div>
+                        <div className="py-1">
+                          <Link
+                            href={`/${locale}/admin/profile`}
+                            onClick={() => setUserOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-accent transition-colors"
+                          >
+                            <User className="w-4 h-4 text-muted-foreground" />{" "}
+                            {t("account")}
+                          </Link>
+                          <Link
+                            href={`/${locale}/admin/my-orders`}
+                            onClick={() => setUserOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-accent transition-colors"
+                          >
+                            <Package className="w-4 h-4 text-muted-foreground" />{" "}
+                            {t("orders")}
+                          </Link>
+                          <Link
+                            href={
+                              userRole === "branch_staff"
+                                ? `/${locale}/admin/account`
+                                : `/${locale}/admin`
+                            }
+                            onClick={() => setUserOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-accent transition-colors text-primary font-medium"
+                          >
+                            <Settings className="w-4 h-4" />
+                            {userRole === "branch_staff"
+                              ? t("accountCenter")
+                              : t("admin")}
+                          </Link>
+                        </div>
+                        <div className="py-1 border-t border-border">
+                          <button
+                            onClick={async () => {
+                              setUserOpen(false);
+                              await signOut();
+                              router.refresh();
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-2 text-sm hover:bg-accent transition-colors text-destructive"
+                          >
+                            <LogOut className="w-4 h-4" /> {t("signOut")}
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  href={`/${locale}/auth/sign-in`}
+                  className="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                >
+                  {t("signIn")}
+                </Link>
+              )}
+
+              {/* Mobile menu */}
+              <button
+                onClick={openMobileMenu}
+                className="lg:hidden p-2 rounded-lg hover:bg-accent text-foreground/70 transition-colors"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile search bar */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden border-t border-border overflow-hidden"
+            >
+              <form onSubmit={handleSearch} className="p-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    ref={searchRef}
+                    type="text"
+                    placeholder={t("searchPlaceholder")}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-9 pr-10 py-2.5 text-sm bg-muted border border-border rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                  <button
+                    type="button"
+                    onClick={toggleSearch}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Mobile menu drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-50 lg:hidden"
+              onClick={closeMobileMenu}
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.25 }}
+              className="fixed left-0 top-0 h-full w-72 bg-card border-r border-border shadow-2xl z-50 lg:hidden flex flex-col"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-border">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src="/simbalogo.png"
+                      alt="Simba Super Market logo"
+                      width={35}
+                      height={35}
+                    />
+                  </div>
+                  <span className="font-bold text-foreground">
+                    Simba Super Market
+                  </span>
+                </div>
+                <button
+                  onClick={closeMobileMenu}
+                  className="p-1 rounded-lg hover:bg-accent"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+                {[
+                  { href: `/${locale}`, label: t("home") },
+                  { href: `/${locale}/shop`, label: t("shop") },
+                  { href: `/${locale}/branches`, label: t("branches") },
+                  { href: `/${locale}/blog`, label: t("blog") },
+                  { href: `/${locale}/contact`, label: t("contact") },
+                ].map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="block px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-accent hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <div className="pt-2">
+                  <p className="px-4 py-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    {t("categories")}
+                  </p>
+                  {categories?.slice(0, 6).map((cat: any) => (
+                    <Link
+                      key={cat.id}
+                      href={`/${locale}/shop?category=${cat.slug}`}
+                      onClick={closeMobileMenu}
+                      className="block px-4 py-2 rounded-lg text-sm hover:bg-accent hover:text-primary transition-colors"
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </div>
+              </nav>
+
+              <div className="p-4 border-t border-border space-y-2">
+                {user ? (
+                  <>
+                    <div className="flex items-center gap-3 px-2 py-2">
+                      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        {user.name?.[0]?.toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium">{user.name}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {user.email}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        closeMobileMenu();
+                        await signOut();
+                        router.refresh();
+                      }}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-accent rounded-lg transition-colors"
+                    >
+                      <LogOut className="w-4 h-4" /> {t("signOut")}
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href={`/${locale}/auth/sign-in`}
+                    onClick={closeMobileMenu}
+                    className="block w-full text-center px-4 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-full hover:bg-primary/90 transition-colors"
+                  >
+                    {t("signIn")}
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {branchSwitchPending && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] bg-black/60 flex items-center justify-center p-4"
+            onClick={() => setBranchSwitchPending(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.98, y: 8 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.98, y: 8 }}
+              className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-lg font-bold mb-2">Switch branch</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Some items in your cart are not available at{" "}
+                {branchSwitchPending.branch.name.replace(
+                  "Simba Supermarket ",
+                  "",
+                )}
+                . If you continue, those items will be removed and only the
+                available ones will remain.
+              </p>
+
+              <div className="space-y-3 mb-5">
+                {branchSwitchPending.unavailable.map((item) => (
+                  <div
+                    key={item.productId}
+                    className="flex items-start justify-between gap-3 rounded-xl border border-border p-3"
+                  >
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {item.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Requested {item.requested}, available {item.available}
+                      </p>
+                    </div>
+                    <span className="text-xs font-medium text-destructive shrink-0">
+                      Remove
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => void confirmBranchSwitch()}
+                  className="flex-1 bg-primary text-primary-foreground font-semibold py-3 rounded-xl hover:bg-primary/90 transition-colors"
+                >
+                  Continue
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBranchSwitchPending(null)}
+                  className="flex-1 border border-border rounded-xl font-medium hover:bg-muted transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
