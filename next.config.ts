@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+  rewrites:() => [
+    {
+      source: "/api/:path*",
+      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/:path*`,
+    },
+  ],
 };
 
 export default withNextIntl(nextConfig);
