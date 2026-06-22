@@ -8,14 +8,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 import { bannerApi } from "@/lib/api";
 import { cn, getImageUrl } from "@/lib/utils";
-import VideoPlayerModal from "../Videoplayermodal";
 
 export function HeroSection() {
   const t = useTranslations("home");
   const locale = useLocale();
   const [current, setCurrent] = useState(0);
-  const [openVideo, setOpenVideo] = useState(false);
-
   const { data: banners = [] } = useQuery({
     queryKey: ["banners"],
     queryFn: () => bannerApi.list().then((r) => r.data),
@@ -97,12 +94,6 @@ export function HeroSection() {
                       >
                         {t("hero.shopNow")}
                       </Link>
-                      <a
-                        onClick={() => setOpenVideo(true)}
-                        className="cursor-pointer px-6 py-3 bg-white/20 backdrop-blur text-white font-semibold rounded-full hover:bg-white/30 transition-colors text-sm border border-white/30"
-                      >
-                        {t("hero.viewDemo")}
-                      </a>
                     </div>
                   </motion.div>
                 </div>
@@ -141,10 +132,6 @@ export function HeroSection() {
           )}
         </div>
       </section>
-      <VideoPlayerModal
-        isOpen={openVideo}
-        onClose={() => setOpenVideo(false)}
-      />
     </>
   );
 }
