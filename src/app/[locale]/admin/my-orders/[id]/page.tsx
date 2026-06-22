@@ -19,6 +19,7 @@ import { orderApi } from "@/lib/api";
 import { useOrderSocket } from "@/hooks/useSocket";
 import { formatPrice, formatDateTime, getImageUrl } from "@/lib/utils";
 import { Skeleton } from "@/components/common/skeletons";
+import { PrintableReceipt } from "@/components/common/printable-receipt";
 import { useCallback } from "react";
 
 //  Match your BranchOrderStatus enum exactly
@@ -220,14 +221,15 @@ export default function OrderDetailPage() {
             {formatDateTime(order.createdAt)}
           </p>
         </div>
-        <div className="text-right">
-          <p className="font-bold text-xl text-primary">
-            {formatPrice(order.total)}
-          </p>
-          <span
-            className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${
-              order.paymentStatus === "paid"
-                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+        <div className="flex flex-col items-end gap-3">
+          <div className="text-right">
+            <p className="font-bold text-xl text-primary">
+              {formatPrice(order.total)}
+            </p>
+            <span
+              className={`text-xs font-medium px-2 py-0.5 rounded-full mt-1 inline-block ${
+                order.paymentStatus === "paid"
+                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                 : order.paymentStatus === "failed"
                   ? "bg-red-100 text-red-700"
                   : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
@@ -235,6 +237,8 @@ export default function OrderDetailPage() {
           >
             {order.paymentStatus}
           </span>
+          </div>
+          <PrintableReceipt order={order} />
         </div>
       </div>
 

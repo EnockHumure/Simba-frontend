@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { Heart, ShoppingCart, Star, Minus, Plus } from "lucide-react";
+import { Heart, ShoppingCart, Star, Minus, Plus, Eye } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,6 +14,7 @@ import { cn, formatPrice, getDiscountPercent, getImageUrl } from "@/lib/utils";
 import { useSession } from "@/lib/auth-client";
 import { RatingStars } from "@/components/common/rating-stars";
 import { useCart } from "@/hooks/useCart";
+import { QuickViewModal } from "./quick-view-modal";
 
 interface Product {
   id: string;
@@ -33,6 +35,7 @@ export function ProductCard({ product }: { product: Product }) {
   const t = useTranslations("product");
   const locale = useLocale();
   const { data: session } = useSession();
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
   const { has: isWishlisted, toggle: toggleLocal } = useWishlistStore();
   const { selectedBranchId } = useBranchStore();
   const {
@@ -236,7 +239,16 @@ export function ProductCard({ product }: { product: Product }) {
             </div>
 
             {/* Actions overlay */}
-            <div className="absolute top-2 right-2 flex flex-col opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setQuickViewOpen(true);
+                }}
+                className="w-8 h-8 rounded-full flex items-center justify-center shadow-md bg-card text-foreground hover:bg-primary hover:text-white transition-all"
+              >
+                <Eye className="w-4 h-4" />
+              </button>
               <button
                 onClick={handleWishlist}
                 className={cn(
@@ -334,6 +346,12 @@ export function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
       </Link>
+
+      <QuickViewModal
+        product={product}
+        isOpen={quickViewOpen}
+        onClose={() => setQuickViewOpen(false)}
+      />
     </motion.div>
   );
 }

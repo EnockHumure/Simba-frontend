@@ -22,20 +22,24 @@ interface CartStore {
   items: CartItem[];
   total: number;
   deliveryFee: number;
+  minimumOrder: number;
   isOpen: boolean;
   setCart: (items: CartItem[], total: number, deliveryFee: number) => void;
   addItem: (item: CartItem) => void;
   openCart: () => void;
   closeCart: () => void;
   toggleCart: () => void;
+  clearItems: () => void;
   getItemCount: () => number;
   getGrandTotal: () => number;
+  canCheckout: () => boolean;
 }
 
 export const useCartStore = create<CartStore>((set, get) => ({
   items: [],
   total: 0,
   deliveryFee: 1000,
+  minimumOrder: 2500,
   isOpen: false,
   addItem: (item) =>
     set((s) => {
@@ -57,8 +61,10 @@ export const useCartStore = create<CartStore>((set, get) => ({
   openCart: () => set({ isOpen: true }),
   closeCart: () => set({ isOpen: false }),
   toggleCart: () => set((s) => ({ isOpen: !s.isOpen })),
+  clearItems: () => set({ items: [], total: 0 }),
   getItemCount: () => get().items.reduce((sum, i) => sum + i.quantity, 0),
   getGrandTotal: () => get().total + get().deliveryFee,
+  canCheckout: () => get().total >= get().minimumOrder,
 }));
 
 //  UI Store
@@ -213,6 +219,55 @@ export const useBranchStore = create<BranchStore>()(
         }),
     }),
     { name: "simba-branch" },
+  ),
+);
+
+//  Save for Later Store (persisted)
+
+export interface SavedForLaterItem {
+  productId: string;
+  product: {
+    id: string;
+    name: string;
+    slug: string;
+    price: number;
+    comparePrice?: number;
+    images: string[];
+    stock: number;
+  };
+  savedAt: string;
+}
+
+interface SaveForLaterStore {
+  items: SavedForLaterItem[];
+  add: (item: Omit<SavedForLaterItem, "savedAt">) => void;
+  remove: (productId: string) => void;
+  clear: () => void;
+  has: (productId: string) => boolean;
+}
+
+export const useSaveForLaterStore = create<SaveForLaterStore>()(
+  persist(
+    (set, get) => ({
+      items: [],
+      add: (item) =>
+        set((s) => {
+          if (s.items.some((i) => i.productId === item.productId)) return s;
+          return {
+            items: [
+              ...s.items,
+              { ...item, savedAt: new Date().toISOString() },
+            ],
+          };
+        }),
+      remove: (productId) =>
+        set((s) => ({
+          items: s.items.filter((i) => i.productId !== productId),
+        })),
+      clear: () => set({ items: [] }),
+      has: (productId) => get().items.some((i) => i.productId === productId),
+    }),
+    { name: "simba-saved-for-later" },
   ),
 );
 

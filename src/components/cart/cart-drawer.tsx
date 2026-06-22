@@ -25,7 +25,7 @@ export function CartDrawer() {
   const t = useTranslations("cart");
   const locale = useLocale();
   const { data: session } = useSession();
-  const { isOpen, closeCart, setCart, items, total, deliveryFee } =
+  const { isOpen, closeCart, setCart, items, total, deliveryFee, minimumOrder, canCheckout } =
     useCartStore();
   const guestCart = useGuestCartStore();
   const { selectedBranchId } = useBranchStore();
@@ -290,11 +290,31 @@ export function CartDrawer() {
                 <p className="text-[11px] text-muted-foreground text-center">
                   {t("deliveryNote")}
                 </p>
+                {!canCheckout() && (
+                  <div className="p-2.5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-xs text-amber-700 dark:text-amber-400 text-center">
+                    {t("belowMinimum", {
+                      amount: formatPrice(minimumOrder),
+                      remaining: formatPrice(minimumOrder - total),
+                    })}
+                  </div>
+                )}
                 {isLoggedIn ? (
                   <Link
                     href={`/${locale}/checkout`}
-                    onClick={closeCart}
-                    className="block w-full text-center py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors"
+                    onClick={(e) => {
+                      if (!canCheckout()) {
+                        e.preventDefault();
+                        toast.error(t("belowMinimum", {
+                          amount: formatPrice(minimumOrder),
+                          remaining: formatPrice(minimumOrder - total),
+                        }));
+                      } else {
+                        closeCart();
+                      }
+                    }}
+                    className={`block w-full text-center py-3 bg-primary text-white font-semibold rounded-full transition-colors ${
+                      !canCheckout() ? "opacity-50 cursor-not-allowed" : "hover:bg-primary/90"
+                    }`}
                   >
                     {t("checkout")}
                   </Link>

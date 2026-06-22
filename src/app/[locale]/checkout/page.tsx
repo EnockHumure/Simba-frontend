@@ -105,9 +105,14 @@ export default function CheckoutPage() {
   const cashDesc = isPickup ? t("cashOnArrivalDesc") : t("cashOnDeliveryDesc");
 
   // Build schema with translated error messages
+  const rwandaPhoneRegex = /^\+?250\s?7[2-9]\d{7}$/;
+  
   const schema = z.object({
     fullName: z.string().min(2, t("errors.fullNameMin")),
-    phone: z.string().min(10, t("errors.phoneMin")),
+    phone: z
+      .string()
+      .min(10, t("errors.phoneMin"))
+      .regex(rwandaPhoneRegex, t("errors.phoneInvalid")),
     street: z.string().optional(),
     district: z.string().optional(),
     sector: z.string().optional(),
