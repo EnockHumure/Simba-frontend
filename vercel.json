@@ -22,17 +22,15 @@
           "value": "Content-Type, Authorization"
         }
       ]
+    },
+    {
+      "source": "/(manifest.json|.*\\/manifest.json|favicon.ico|sw.js|browserconfig.xml)",
+      "headers": [
+        {
+          "key": "x-vercel-protection-bypass",
+          "value": "public"
+        }
+      ]
     }
-  ],
-  "public": [
-    "/manifest.json",
-    "/:locale/manifest.json",
-    "/en/manifest.json",
-    "/fr/manifest.json",
-    "/rw/manifest.json",
-    "/sw/manifest.json",
-    "/favicon.ico",
-    "/sw.js",
-    "/browserconfig.xml"
   ]
 }
