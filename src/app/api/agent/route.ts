@@ -425,7 +425,7 @@ async function executeTool(
             slug: p.slug,
             category: p.category?.name || p.category || "",
             tags: p.tags || [],
-            images: p.images?.slice(0, 1) || [],
+            images: (Array.isArray(p.images) ? p.images : p.images?.split(',').map((s: string) => s.trim()) || []).slice(0, 1),
             description:
               p.shortDescription || p.description?.slice(0, 120) || "",
             inStock: (p.stock || 0) > 0,
@@ -638,7 +638,7 @@ async function executeTool(
             price: i.product?.price,
             stock: i.product?.stock || 0,
             slug: i.product?.slug,
-            images: i.product?.images?.slice(0, 1) || [],
+            images: (Array.isArray(i.product?.images) ? i.product.images : i.product?.images?.split(',').map((s: string) => s.trim()) || []).slice(0, 1),
             inStock: (i.product?.stock || 0) > 0,
           })),
         });
@@ -896,7 +896,7 @@ async function intelligentFallback(
         slug: p.slug,
         category: p.category?.name || p.category || "",
         tags: p.tags || [],
-        images: p.images?.slice(0, 1) || [],
+        images: (Array.isArray(p.images) ? p.images : p.images?.split(',').map((s: string) => s.trim()) || []).slice(0, 1),
         description: p.shortDescription || p.description?.slice(0, 120) || "",
         inStock: (p.stock || 0) > 0,
       }));
