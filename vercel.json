@@ -23,5 +23,16 @@
         }
       ]
     }
+  ],
+  "public": [
+    "/manifest.json",
+    "/:locale/manifest.json",
+    "/en/manifest.json",
+    "/fr/manifest.json",
+    "/rw/manifest.json",
+    "/sw/manifest.json",
+    "/favicon.ico",
+    "/sw.js",
+    "/browserconfig.xml"
   ]
 }

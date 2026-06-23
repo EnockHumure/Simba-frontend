@@ -416,20 +416,23 @@ async function executeTool(
             minPrice !== undefined || maxPrice !== undefined
               ? { min: minPrice ?? null, max: maxPrice ?? null }
               : null,
-          products: products.slice(0, 20).map((p: any) => ({
-            id: p.id,
-            name: p.name,
-            price: p.price,
-            currency: "RWF",
-            stock: p.stock,
-            slug: p.slug,
-            category: p.category?.name || p.category || "",
-            tags: p.tags || [],
-            images: (Array.isArray(p.images) ? p.images : p.images?.split(',').map((s: string) => s.trim()) || []).slice(0, 1),
-            description:
-              p.shortDescription || p.description?.slice(0, 120) || "",
-            inStock: (p.stock || 0) > 0,
-          })),
+          products: products.slice(0, 20).map((p: any) => {
+            const imgArray = Array.isArray(p.images) ? p.images : (p.images?.split(',').map((s: string) => s.trim()) || []);
+            return {
+              id: p.id,
+              name: p.name,
+              price: p.price,
+              currency: "RWF",
+              stock: p.stock,
+              slug: p.slug,
+              category: p.category?.name || p.category || "",
+              tags: p.tags || [],
+              images: imgArray.slice(0, 1),
+              description:
+                p.shortDescription || p.description?.slice(0, 120) || "",
+              inStock: (p.stock || 0) > 0,
+            };
+          }),
         });
       }
 
