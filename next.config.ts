@@ -15,20 +15,8 @@ const nextConfig: NextConfig = {
   },
   rewrites: async () => [
     {
-      source: "/api/products/:path*",
-      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/products/:path*`,
-    },
-    {
-      source: "/api/categories/:path*",
-      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/categories/:path*`,
-    },
-    {
-      source: "/api/orders/:path*",
-      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/orders/:path*`,
-    },
-    {
-      source: "/api/reviews/:path*",
-      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/reviews/:path*`,
+      source: "/api/:path*",
+      destination: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/:path*`,
     },
   ],
 };
