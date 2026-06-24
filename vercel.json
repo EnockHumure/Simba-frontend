@@ -1,8 +1,32 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://ssimba.onrender.com/api/:path*"
+      "source": "/api/products/:path*",
+      "destination": "https://ssimba.onrender.com/api/products/:path*"
+    },
+    {
+      "source": "/api/categories/:path*",
+      "destination": "https://ssimba.onrender.com/api/categories/:path*"
+    },
+    {
+      "source": "/api/orders/:path*",
+      "destination": "https://ssimba.onrender.com/api/orders/:path*"
+    },
+    {
+      "source": "/api/reviews/:path*",
+      "destination": "https://ssimba.onrender.com/api/reviews/:path*"
+    },
+    {
+      "source": "/api/banners/:path*",
+      "destination": "https://ssimba.onrender.com/api/banners/:path*"
+    },
+    {
+      "source": "/api/branches/:path*",
+      "destination": "https://ssimba.onrender.com/api/branches/:path*"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "https://ssimba.onrender.com/uploads/:path*"
     }
   ],
   "headers": [
