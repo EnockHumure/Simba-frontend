@@ -40,7 +40,7 @@ export function BranchesStrip() {
             ? Array.from({ length: 5 }).map((_, i) => (
                 <Skeleton key={i} className="h-24 rounded-2xl" />
               ))
-            : branches?.slice(0, 5).map((branch: any) => (
+            : (branches || []).slice(0, 5).map((branch: any) => (
                 <Link
                   key={branch.id}
                   href={`/${locale}/branches/${branch.slug}`}

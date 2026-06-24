@@ -549,7 +549,7 @@ export function Navbar() {
                               {t("noNotifications")}
                             </div>
                           ) : (
-                            notifications.slice(0, 5).map((n) => (
+                            (notifications || []).slice(0, 5).map((n) => (
                               <button
                                 key={n.id}
                                 type="button"
