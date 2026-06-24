@@ -252,7 +252,7 @@ export function CategoryGrid() {
           ? Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="aspect-square skeleton rounded-2xl" />
             ))
-          : categories?.slice(0, 8).map((cat: any, i: number) => {
+          : (categories || []).slice(0, 8).map((cat: any, i: number) => {
               // Priority: DB image → keyword match → gradient fallback
               const imageUrl = cat.image
                 ? getImageUrl(cat.image)
