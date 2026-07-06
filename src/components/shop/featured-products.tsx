@@ -53,7 +53,7 @@ export function FeaturedProducts() {
     queryFn: () =>
       productApi
         .featured({ branchId: selectedBranchId || undefined })
-        .then((r) => r.data),
+        .then((r) => r.data.data),
   });
 
   return (
@@ -86,7 +86,7 @@ export function TopProducts() {
     queryFn: () =>
       productApi
         .top({ branchId: selectedBranchId || undefined })
-        .then((r) => r.data),
+        .then((r) => r.data.data),
   });
 
   return (
@@ -121,7 +121,7 @@ export function RecommendedProducts() {
     queryFn: () =>
       productApi
         .recommendations({ branchId: selectedBranchId || undefined })
-        .then((r) => r.data),
+        .then((r) => r.data.data),
   });
 
   return (
