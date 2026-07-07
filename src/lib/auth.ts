@@ -1,5 +1,4 @@
 import { betterAuth, type BetterAuthOptions } from "better-auth";
-import { Pool } from "@neondatabase/serverless";
 
 type AuthInstance = ReturnType<typeof betterAuth<BetterAuthOptions>>;
 
@@ -13,7 +12,15 @@ export function getAuth(): AuthInstance {
     if (!dbUrl) throw new Error("Missing env: DATABASE_URL");
     if (!secret) throw new Error("Missing env: BETTER_AUTH_SECRET");
 
-    const pool = new Pool({ connectionString: dbUrl });
+    // Use pg directly — works in Vercel Node.js serverless (not edge)
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Pool } = require("pg") as typeof import("pg");
+
+    const pool = new Pool({
+      connectionString: dbUrl,
+      ssl: { rejectUnauthorized: false },
+      max: 1,
+    });
 
     _auth = betterAuth({
       database: pool,
