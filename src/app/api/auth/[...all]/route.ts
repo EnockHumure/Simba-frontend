@@ -2,7 +2,8 @@ import { getAuth } from "@/lib/auth";
 import { toNextJsHandler } from "better-auth/next-js";
 import { NextRequest, NextResponse } from "next/server";
 
-let handler: { GET: (req: NextRequest) => Promise<NextResponse>; POST: (req: NextRequest) => Promise<NextResponse> } | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let handler: any = null;
 
 function getHandler() {
   if (!handler) {
@@ -16,24 +17,21 @@ function getHandler() {
   return handler;
 }
 
+const fallback = () =>
+  NextResponse.json({ session: null, user: null }, { status: 200 });
+
 export async function GET(req: NextRequest) {
   try {
-    const h = getHandler();
-    if (!h) return NextResponse.json({ session: null, user: null }, { status: 200 });
-    return h.GET(req);
-  } catch (err) {
-    console.error("[auth] GET error:", err);
-    return NextResponse.json({ session: null, user: null }, { status: 200 });
+    return (await getHandler()?.GET(req)) ?? fallback();
+  } catch {
+    return fallback();
   }
 }
 
 export async function POST(req: NextRequest) {
   try {
-    const h = getHandler();
-    if (!h) return NextResponse.json({ session: null, user: null }, { status: 200 });
-    return h.POST(req);
-  } catch (err) {
-    console.error("[auth] POST error:", err);
-    return NextResponse.json({ session: null, user: null }, { status: 200 });
+    return (await getHandler()?.POST(req)) ?? fallback();
+  } catch {
+    return fallback();
   }
 }
