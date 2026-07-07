@@ -40,7 +40,6 @@ export const metadata: Metadata = {
     siteName: "Simba Super Market",
     title: "Simba Super Market - Kigali",
     description: "Kigali's favourite supermarket. Fresh groceries, 9 branches.",
-    images: [{ url: "/icons/icon-512x512.png", width: 512, height: 512 }],
   },
   other: {
     "msapplication-TileColor": "#fc7d00",
