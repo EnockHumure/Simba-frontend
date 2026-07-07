@@ -18,35 +18,17 @@ const nextConfig: NextConfig = {
   },
   rewrites: async () => {
     const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/api$/, "");
+    const proxyRoutes = [
+      "products", "categories", "orders", "reviews", "banners",
+      "branches", "cart", "wishlist", "users", "blogs", "contact",
+      "settings", "upload", "search", "admin",
+    ];
     return [
-      {
-        source: "/api/products/:path*",
-        destination: `${apiBaseUrl}/api/products/:path*`,
-      },
-      {
-        source: "/api/categories/:path*",
-        destination: `${apiBaseUrl}/api/categories/:path*`,
-      },
-      {
-        source: "/api/orders/:path*",
-        destination: `${apiBaseUrl}/api/orders/:path*`,
-      },
-      {
-        source: "/api/reviews/:path*",
-        destination: `${apiBaseUrl}/api/reviews/:path*`,
-      },
-      {
-        source: "/api/banners/:path*",
-        destination: `${apiBaseUrl}/api/banners/:path*`,
-      },
-      {
-        source: "/api/branches/:path*",
-        destination: `${apiBaseUrl}/api/branches/:path*`,
-      },
-      {
-        source: "/uploads/:path*",
-        destination: `${apiBaseUrl}/uploads/:path*`,
-      },
+      ...proxyRoutes.map((route) => ({
+        source: `/api/${route}/:path*`,
+        destination: `${apiBaseUrl}/api/${route}/:path*`,
+      })),
+      { source: "/uploads/:path*", destination: `${apiBaseUrl}/uploads/:path*` },
     ];
   },
 };

@@ -14,7 +14,7 @@ export function BranchesStrip() {
 
   const { data: branches, isLoading } = useQuery({
     queryKey: ["branches"],
-    queryFn: () => branchApi.list().then((r) => r.data),
+    queryFn: () => branchApi.list().then((r) => r.data?.data ?? r.data),
   });
 
   return (
