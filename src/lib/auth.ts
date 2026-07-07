@@ -18,3 +18,4 @@ export const auth = betterAuth({
     "https://simba-frontend-world-pahagia18-enockhumures-projects.vercel.app",
   ],
 });
+ 

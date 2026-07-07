@@ -35,7 +35,7 @@ export function BranchesStrip() {
           </Link>
         </div>
 
-        {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {isLoading
             ? Array.from({ length: 5 }).map((_, i) => (
                 <Skeleton key={i} className="h-24 rounded-2xl" />
@@ -58,7 +58,7 @@ export function BranchesStrip() {
                   </p>
                 </Link>
               ))}
-        </div> */}
+        </div>
       </div>
     </section>
   );
