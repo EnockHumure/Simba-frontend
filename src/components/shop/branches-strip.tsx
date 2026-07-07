@@ -14,7 +14,7 @@ export function BranchesStrip() {
 
   const { data: branches, isLoading } = useQuery({
     queryKey: ["branches"],
-    queryFn: () => branchApi.list().then((r) => r.data?.data ?? r.data),
+    queryFn: () => branchApi.list().then((r) => r.data),
   });
 
   return (
@@ -34,7 +34,7 @@ export function BranchesStrip() {
             {t("viewAll")} <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
-
+{/* 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {isLoading
             ? Array.from({ length: 5 }).map((_, i) => (
@@ -58,7 +58,7 @@ export function BranchesStrip() {
                   </p>
                 </Link>
               ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

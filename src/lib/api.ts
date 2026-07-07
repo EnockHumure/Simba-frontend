@@ -165,8 +165,8 @@ export const uploadApi = {
 };
 
 export const branchApi = {
-  list: () => api.get("/branches"),
-  get: (slug: string) => api.get(`/branches/${slug}`),
+  list: () => api.get("/branches").then((r) => { r.data = r.data?.data ?? r.data; return r; }),
+  get: (slug: string) => api.get(`/branches/${slug}`).then((r) => { r.data = r.data?.data ?? r.data; return r; }),
   stock: (branchId: string, params?: Record<string, any>) =>
     api.get(`/branches/${branchId}/stock`, { params }),
   createOrder: (data: any) => api.post("/branches/orders", data),
