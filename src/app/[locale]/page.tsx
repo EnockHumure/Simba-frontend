@@ -29,7 +29,7 @@ export default async function HomePage({
       <HeroSection />
       <SearchSection />
       <CategoryGrid />
-      <BranchesStrip />
+      {/* <BranchesStrip /> */}
       <FeaturedProducts />
       <TopProducts />
       <RecommendedProducts />
