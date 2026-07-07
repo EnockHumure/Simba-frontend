@@ -1,4 +1,5 @@
 import { betterAuth, type BetterAuthOptions } from "better-auth";
+import { Pool } from "pg";
 
 type AuthInstance = ReturnType<typeof betterAuth<BetterAuthOptions>>;
 
@@ -12,13 +13,16 @@ export function getAuth(): AuthInstance {
     if (!dbUrl) throw new Error("Missing env: DATABASE_URL");
     if (!secret) throw new Error("Missing env: BETTER_AUTH_SECRET");
 
+    const pool = new Pool({
+      connectionString: dbUrl,
+      ssl: { rejectUnauthorized: false },
+    });
+
     _auth = betterAuth({
-      database: {
-        url: dbUrl,
-        type: "postgres",
-      },
+      database: pool,
       emailAndPassword: { enabled: true },
       secret,
+      baseURL: process.env.NEXT_PUBLIC_APP_URL || "https://simba-frontend-world.vercel.app",
       trustedOrigins: [
         process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
         "https://simba-frontend-world.vercel.app",
