@@ -236,7 +236,10 @@ export function CategoryGrid() {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories", { withProductsOnly: true }],
     queryFn: () =>
-      categoryApi.list({ withProductsOnly: true }).then((r) => r.data),
+      categoryApi.list({ withProductsOnly: true }).then((r) => {
+        const d = r.data;
+        return Array.isArray(d) ? d : Array.isArray(d?.data) ? d.data : [];
+      }),
     staleTime: 1000 * 60 * 10,
   });
 

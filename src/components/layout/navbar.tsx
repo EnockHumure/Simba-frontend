@@ -106,7 +106,10 @@ export function Navbar() {
     queryFn: () =>
       categoryApi
         .list({ limit: 6, withProductsOnly: true })
-        .then((r) => r.data),
+        .then((r) => {
+          const d = r.data;
+          return Array.isArray(d) ? d : Array.isArray(d?.data) ? d.data : [];
+        }),
     staleTime: 1000 * 60 * 10,
   });
 

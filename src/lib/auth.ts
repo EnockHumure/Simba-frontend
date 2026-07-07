@@ -6,13 +6,19 @@ let _auth: AuthInstance | null = null;
 
 export function getAuth(): AuthInstance {
   if (!_auth) {
+    const dbUrl = process.env.DATABASE_URL;
+    const secret = process.env.BETTER_AUTH_SECRET;
+
+    if (!dbUrl) throw new Error("Missing env: DATABASE_URL");
+    if (!secret) throw new Error("Missing env: BETTER_AUTH_SECRET");
+
     _auth = betterAuth({
       database: {
-        url: process.env.DATABASE_URL!,
+        url: dbUrl,
         type: "postgres",
       },
       emailAndPassword: { enabled: true },
-      secret: process.env.BETTER_AUTH_SECRET!,
+      secret,
       trustedOrigins: [
         process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
         "https://simba-frontend-world.vercel.app",
